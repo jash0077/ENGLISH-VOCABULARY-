@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocab Studio</title>
+    <script>
+      const path = window.location.pathname;
+      const repoRoot = "/ENGLISH-VOCABULARY/";
+      if (path === repoRoot || path === repoRoot.slice(0, -1)) {
+        window.location.replace(`${repoRoot}index.html${window.location.search}${window.location.hash}`);
+      }
+    </script>
+    <meta http-equiv="refresh" content="0; url=/ENGLISH-VOCABULARY/index.html" />
+  </head>
+  <body>
+    <p>Opening Vocab Studio…</p>
+  </body>
+</html>

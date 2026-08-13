@@ -134,3 +134,15 @@
 - [x] Add an offline-pack indicator to the study rail so saved-pack status is visible outside the dashboard.
 - [x] Add study-pack actions and clear unavailable-offline messaging for packs that are not saved.
 - [x] Verify pack save/remove transitions and the Cache Storage path, then publish the final offline-pack update.
+
+## GitHub Pages synchronization
+
+- [ ] Compare GitHub main with the latest verified Vocab Studio checkpoint.
+- [ ] Push the latest build and deployment workflow to the user’s GitHub repository.
+- [ ] Verify GitHub Actions completes and the deployed site includes Dashboard and US Phonetics.
+- [ ] Report the correct URL, cache-refresh steps, and deployment state.
+
+## GitHub Pages root-route fix
+
+- [ ] Add a GitHub Pages fallback redirect so the repository URL opens index.html instead of showing 404.
+- [ ] Push the redirect and verify both the root URL and explicit index URL.
