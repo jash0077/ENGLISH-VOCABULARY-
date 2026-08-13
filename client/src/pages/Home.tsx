@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import { ADVANCED_WORDS } from "@/data/advancedVocabulary";
 import { TENSES, type TenseLesson } from "@/data/tenses";
 import { SHADOWING_LINES } from "@/data/shadowing";
+import { SHADOWING_PASSAGES } from "@/data/shadowingPassages";
 
 const CORE_WORDS = [
   { w: "ubiquitous", p: "adj.", ph: "yoo-BIK-wi-tuhs", m: "present or found everywhere at once.", ex: "Smartphones have become ubiquitous in modern life.", syn: ["omnipresent", "pervasive", "widespread"], cat: "Everyday", dif: 2 },
@@ -142,27 +143,47 @@ function Quiz({ words, onFinish, markLearned }: { words: readonly Word[]; onFini
 }
 
 function ShadowingView() {
-  const [index, setIndex] = useState(0);
-  const [completed, setCompleted] = useState<number[]>(() => JSON.parse(localStorage.getItem("shadowing-completed") || "[]"));
-  const [countdown, setCountdown] = useState<number | null>(null);
-  const line = SHADOWING_LINES[index];
-  useEffect(() => {
-    if (countdown === null) return;
-    if (countdown === 0) { setCountdown(null); return; }
-    const timer = window.setTimeout(() => setCountdown(value => value === null ? null : value - 1), 800);
-    return () => window.clearTimeout(timer);
-  }, [countdown]);
-  const markComplete = () => {
-    setCompleted(previous => {
-      const next = previous.includes(line.id) ? previous : [...previous, line.id];
-      localStorage.setItem("shadowing-completed", JSON.stringify(next));
-      return next;
-    });
-    setCountdown(null);
+  const [passageId, setPassageId] = useState<string>(SHADOWING_PASSAGES[0].id);
+  const passage = SHADOWING_PASSAGES.find(item => item.id === passageId) ?? SHADOWING_PASSAGES[0];
+  const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [transcript, setTranscript] = useState("");
+  const [listening, setListening] = useState(false);
+  const [result, setResult] = useState<{ pronunciation: number; fluency: number; intonation: number; voiceMatch: number; transcript: string } | null>(null);
+  const [completed, setCompleted] = useState<string[]>(() => JSON.parse(localStorage.getItem("shadowing-passage-progress") || "[]"));
+  const sentence = passage.sentences[sentenceIndex];
+  const supported = typeof window !== "undefined" && Boolean((window as Window & { SpeechRecognition?: unknown; webkitSpeechRecognition?: unknown }).SpeechRecognition || (window as Window & { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition);
+  const normalize = (value: string) => value.toLowerCase().replace(/[^a-z\s]/g, " ").replace(/\s+/g, " ").trim();
+  const scoreSpeech = (spoken: string) => {
+    const targetWords = normalize(sentence).split(" ");
+    const spokenWords = normalize(spoken).split(" ");
+    const matches = targetWords.filter((word, index) => spokenWords[index] === word).length;
+    const pronunciation = Math.round((matches / Math.max(targetWords.length, 1)) * 100);
+    const wordCoverage = Math.round((new Set(spokenWords.filter(word => targetWords.includes(word))).size / Math.max(new Set(targetWords).size, 1)) * 100);
+    const durationEstimate = Math.max(spokenWords.length / 2.2, 1);
+    const fluency = Math.max(35, Math.min(100, Math.round(100 - Math.abs(durationEstimate - targetWords.length / 2.2) * 8)));
+    const intonation = Math.max(42, Math.min(96, Math.round(55 + wordCoverage * .35)));
+    const voiceMatch = Math.max(38, Math.min(98, Math.round(pronunciation * .65 + fluency * .2 + intonation * .15)));
+    return { pronunciation, fluency, intonation, voiceMatch, transcript: spoken };
   };
-  const nextLine = () => { markComplete(); setIndex(value => (value + 1) % SHADOWING_LINES.length); };
-  const previousLine = () => { setCountdown(null); setIndex(value => (value - 1 + SHADOWING_LINES.length) % SHADOWING_LINES.length); };
-  return <div className="shadowing-view"><section className="shadowing-intro"><div><span className="note-label">SPEAKING LAB · 30 LINES</span><h2>Borrow the rhythm.<br /><em>Find your voice.</em></h2><p>Listen to the US-English model, speak at the same time, then say the line once more on your own. Focus on rhythm before speed.</p></div><div className="accent-badge"><Mic size={22} /><strong>US English</strong><span>Natural pace · clear stress</span></div></section><div className="shadowing-progress"><div><span>YOUR PRACTICE</span><strong>{completed.length} / {SHADOWING_LINES.length} lines completed</strong></div><div className="progress-track"><span style={{ width: `${(completed.length / SHADOWING_LINES.length) * 100}%` }} /></div></div><div className="shadowing-card"><div className="shadowing-meta"><span className="family-tag">LINE {String(line.id).padStart(2, "0")}</span><span>{line.level} · Focus: {line.focus}</span></div><p className="shadowing-line">“{line.text}”</p><div className="shadowing-actions"><SpeakButton text={line.text} label="Listen US" /><button className="shadowing-start" onClick={() => setCountdown(3)} disabled={countdown !== null}>{countdown === null ? "Start shadowing" : countdown === 0 ? "Speak now" : `Get ready · ${countdown}`}</button><button className={`shadowing-done ${completed.includes(line.id) ? "done" : ""}`} onClick={markComplete}>{completed.includes(line.id) ? <><Check size={15} /> Completed</> : "Mark complete"}</button></div><div className="shadowing-tip"><Lightbulb size={18} /><span><strong>Technique:</strong> {line.focus}. Keep the sentence meaning in mind, copy the pauses, and let unstressed words become lighter.</span></div></div><div className="shadowing-nav"><button onClick={previousLine}><ChevronLeft size={16} /> Previous line</button><div className="shadowing-dots">{[0,1,2,3,4].map(dot => <i key={dot} className={Math.floor(index / 6) === dot ? "active" : ""} />)}</div><button onClick={nextLine}>Next line <ChevronRight size={16} /></button></div></div>;
+  const startRecording = () => {
+    const SpeechRecognitionAPI = (window as Window & { SpeechRecognition?: new () => any; webkitSpeechRecognition?: new () => any }).SpeechRecognition || (window as Window & { webkitSpeechRecognition?: new () => any }).webkitSpeechRecognition;
+    if (!SpeechRecognitionAPI) { toast.error("Speech recognition is not supported here. You can still listen and practice aloud."); return; }
+    window.speechSynthesis?.cancel();
+    setTranscript(""); setResult(null); setListening(true);
+    const recognition = new SpeechRecognitionAPI();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onresult = (event: any) => { const spoken = event.results?.[0]?.[0]?.transcript ?? ""; setTranscript(spoken); setResult(scoreSpeech(spoken)); };
+    recognition.onerror = () => { setListening(false); toast.error("I could not hear a clear attempt. Please try again in a quiet place."); };
+    recognition.onend = () => setListening(false);
+    recognition.start();
+  };
+  const selectPassage = (id: string) => { setPassageId(id); setSentenceIndex(0); setTranscript(""); setResult(null); };
+  const nextSentence = () => { setSentenceIndex(index => Math.min(index + 1, passage.sentences.length - 1)); setTranscript(""); setResult(null); };
+  const previousSentence = () => { setSentenceIndex(index => Math.max(index - 1, 0)); setTranscript(""); setResult(null); };
+  const completePassage = () => { const key = `${passage.id}:${sentenceIndex}`; setCompleted(previous => { const next = previous.includes(key) ? previous : [...previous, key]; localStorage.setItem("shadowing-passage-progress", JSON.stringify(next)); return next; }); toast.success("Sentence saved to your practice progress."); };
+  return <div className="shadowing-view"><section className="shadowing-intro"><div><span className="note-label">SPEAKING LAB · ONE SENTENCE AT A TIME</span><h2>Listen.<br /><em>Shadow. Grow.</em></h2><p>Choose a passage, listen to the US-English model, then record your own voice. The browser gives a practice estimate from your transcript; it does not judge your identity or store audio.</p></div><div className="accent-badge"><Mic size={22} /><strong>US English</strong><span>{supported ? "Speech recognition ready" : "Playback available"}</span></div></section><div className="passage-picker"><div className="passage-picker-head"><span className="note-label">CHOOSE A PASSAGE</span><strong>{SHADOWING_PASSAGES.length} original practice passages</strong></div>{SHADOWING_PASSAGES.map(item => <button key={item.id} className={passage.id === item.id ? "active" : ""} onClick={() => selectPassage(item.id)}><span>{item.speaker}</span><strong>{item.title}</strong><small><b>{item.level}</b>{item.sentences.length} sentences</small><ChevronRight size={18} /></button>)}</div><div className="shadowing-progress"><div><span>PASSAGE PROGRESS</span><strong>Sentence {sentenceIndex + 1} / {passage.sentences.length}</strong></div><div className="progress-track"><span style={{ width: `${((sentenceIndex + 1) / passage.sentences.length) * 100}%` }} /></div></div><div className="shadowing-card"><div className="shadowing-meta"><span className="family-tag">{passage.title}</span><span>{passage.level} · {passage.speaker}</span></div><p className="shadowing-line">“{sentence}”</p><div className="shadowing-actions"><SpeakButton text={sentence} label="Listen US" /><button className="shadowing-start" onClick={startRecording} disabled={listening}>{listening ? "Listening… speak now" : "Record my voice"}</button><button className={`shadowing-done ${completed.includes(`${passage.id}:${sentenceIndex}`) ? "done" : ""}`} onClick={completePassage}>{completed.includes(`${passage.id}:${sentenceIndex}`) ? <><Check size={15} /> Saved</> : "Save sentence"}</button></div>{transcript && <div className="speech-transcript"><span>WHAT I HEARD</span><p>“{transcript}”</p></div>}{result && <div className="speech-results"><div className="score-primary"><span>VOICE MATCH ESTIMATE</span><strong>{result.voiceMatch}%</strong><small>Transcript and pacing estimate — not biometric voice analysis.</small></div><div><span>PRONUNCIATION</span><strong>{result.pronunciation}%</strong></div><div><span>FLUENCY</span><strong>{result.fluency}%</strong></div><div><span>INTONATION</span><strong>{result.intonation}%</strong></div></div>}<div className="shadowing-tip"><Lightbulb size={18} /><span><strong>Shadowing technique:</strong> Listen once, speak with the model, then repeat alone. Copy the pauses and stress, but keep your own natural voice.</span></div></div><div className="shadowing-nav"><button onClick={previousSentence} disabled={sentenceIndex === 0}><ChevronLeft size={16} /> Previous</button><div className="shadowing-dots">{passage.sentences.map((_, dot) => <i key={dot} className={dot === sentenceIndex ? "active" : dot < sentenceIndex ? "done" : ""} />)}</div><button onClick={nextSentence} disabled={sentenceIndex === passage.sentences.length - 1}>Next sentence <ChevronRight size={16} /></button></div></div>;
 }
 
 function TensesView() {

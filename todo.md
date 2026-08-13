@@ -1,6 +1,7 @@
-# Shadowing Practice checklist
+# Advanced Shadowing Practice checklist
 
-- [ ] Prepare 30 original shadowing practice lines.
-- [ ] Add US-English speech playback and repeat-after-me timing.
-- [ ] Add line navigation and completed-practice progress.
-- [ ] Run checks, save a checkpoint, and publish to GitHub Pages.
+- [ ] Add original long passages with sentence-by-sentence segmentation.
+- [ ] Add passage selection and one-sentence practice flow.
+- [ ] Add US-English playback, microphone recognition, and transparent feedback scores.
+- [ ] Add pronunciation, fluency, intonation, and voice-match explanations with browser limitations.
+- [ ] Build, checkpoint, deploy, and verify the GitHub Pages update.
