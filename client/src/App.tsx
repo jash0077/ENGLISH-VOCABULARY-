@@ -8,6 +8,12 @@ import Home from "./pages/Home";
 
 
 function Router() {
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const currentPath = window.location.pathname;
+  if (basePath && currentPath.startsWith(basePath)) {
+    return <Home />;
+  }
+
   return (
     <WouterRouter base={import.meta.env.BASE_URL}>
       <Switch>
