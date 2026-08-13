@@ -33,3 +33,11 @@
 - [ ] Add pronunciation comparison using playback and browser speech recognition without storing audio.
 - [ ] Add offline support with a service worker and installable app metadata.
 - [ ] Validate all features on desktop and mobile, then save and publish.
+
+## Dedicated vocabulary sections
+
+- [ ] Add dedicated Everyday Vocabulary entry point and focused shelf state.
+- [ ] Add dedicated Academic Vocabulary entry point and focused shelf state.
+- [ ] Add dedicated Business Vocabulary entry point and focused shelf state.
+- [ ] Validate counts, search, filters, responsive layout, and study actions.
+- [ ] Save and publish the vocabulary section update.
