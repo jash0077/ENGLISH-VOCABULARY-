@@ -22,3 +22,14 @@
 - [ ] Add smoother responsive behavior and reduced-motion-safe transitions.
 - [ ] Verify the key study modes on desktop and mobile.
 - [ ] Save and publish the polished version.
+
+## Complete learning system
+
+- [ ] Define shared local learning state for daily plan, progress, difficulty, favorites, custom lists, and offline status.
+- [ ] Build the Daily Study Plan with vocabulary, tense, and shadowing tasks.
+- [ ] Build the progress dashboard with accuracy, streak, mastery, and practice summaries.
+- [ ] Add difficulty filters and difficulty-aware quiz selection.
+- [ ] Add favorites and custom word lists with persistence.
+- [ ] Add pronunciation comparison using playback and browser speech recognition without storing audio.
+- [ ] Add offline support with a service worker and installable app metadata.
+- [ ] Validate all features on desktop and mobile, then save and publish.
