@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleHelp,
+  ClipboardCheck,
   Flame,
   Layers3,
   Lightbulb,
@@ -28,6 +29,7 @@ import { TENSES, type TenseLesson } from "@/data/tenses";
 import { SHADOWING_LINES } from "@/data/shadowing";
 import { SHADOWING_PASSAGES } from "@/data/shadowingPassages";
 import { SHADOWING_EXPANSION } from "@/data/shadowingExpansion";
+import { TENSE_QUIZ_BANK } from "@/data/tenseQuizBank";
 
 const CORE_WORDS = [
   { w: "ubiquitous", p: "adj.", ph: "yoo-BIK-wi-tuhs", m: "present or found everywhere at once.", ex: "Smartphones have become ubiquitous in modern life.", syn: ["omnipresent", "pervasive", "widespread"], cat: "Everyday", dif: 2 },
@@ -59,9 +61,12 @@ const CORE_WORDS = [
 const WORDS = [...CORE_WORDS, ...ADVANCED_WORDS, ...ADVANCED_WORDS_EXPANSION] as const;
 const DAILY_SHADOWING_PASSAGES = SHADOWING_EXPANSION.map(item => ({ id: `daily-${item.id}`, speaker: "Vocab Studio", title: `Practice line ${item.id}`, level: item.level, description: item.focus, sentences: [item.text] as const }));
 const PRACTICE_PASSAGES = [...SHADOWING_PASSAGES, ...DAILY_SHADOWING_PASSAGES] as const;
+type TenseQuizQuestion = { id: string; prompt: string; options: string[]; correct_index: number; explanation: string };
+type TenseQuizSet = { tense: string; rounds: { round: number; questions: TenseQuizQuestion[] }[] };
+const TENSE_BANK = TENSE_QUIZ_BANK as unknown as TenseQuizSet[];
 
 type Word = { w: string; p: string; ph: string; m: string; ex: string; syn: readonly string[]; cat: string; dif: number };
-type Mode = "shelf" | "flashcards" | "quiz" | "tenses" | "shadowing";
+type Mode = "shelf" | "flashcards" | "quiz" | "tenses" | "shadowing" | "tenseQuiz";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary", "Advanced"];
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -105,6 +110,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
     { id: "shelf" as Mode, label: "Word shelf", icon: BookOpen },
     { id: "flashcards" as Mode, label: "Flashcards", icon: Layers3 },
     { id: "quiz" as Mode, label: "Quick quiz", icon: Target },
+    { id: "tenseQuiz" as Mode, label: "Tense quiz", icon: ClipboardCheck },
     { id: "tenses" as Mode, label: "Tenses", icon: Sparkles },
     { id: "shadowing" as Mode, label: "Shadowing", icon: Mic },
   ];
@@ -121,7 +127,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
 }
 
 function Header({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
-  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : mode === "tenses" ? "Make your sentences clearer." : "Speak with the rhythm."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : mode === "tenses" ? "A friendly guide to the 12 ways English places an action in time." : "Listen, speak along, and build a more natural American English rhythm."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
+  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : mode === "tenseQuiz" ? "Name the tense." : mode === "tenses" ? "Make your sentences clearer." : "Speak with the rhythm."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : mode === "tenseQuiz" ? "Choose a tense, take a round, and make the timeline automatic." : mode === "tenses" ? "A friendly guide to the 12 ways English places an action in time." : "Listen, speak along, and build a more natural American English rhythm."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
 }
 
 function Shelf({ words, category, setCategory, query, setQuery, setMode, learned, markLearned }: { words: readonly Word[]; category: string; setCategory: (v: string) => void; query: string; setQuery: (v: string) => void; setMode: (m: Mode) => void; learned: number; markLearned: (w: string) => void }) {
@@ -146,6 +152,23 @@ function Quiz({ words, onFinish, markLearned }: { words: readonly Word[]; onFini
   const options = useMemo(() => { const others = words.filter(w => w.w !== current.w).slice(index, index + 3).map(w => w.m); return [current.m, ...others].sort(() => Math.random() - 0.5); }, [current, index, words]);
   const choose = (option: string) => { if (selected) return; setSelected(option); const right = option === current.m; if (right) setScore(s => s + 1); markLearned(current.w); setTimeout(() => { if (index === quizWords.length - 1) onFinish(score + (right ? 1 : 0)); else { setIndex(i => i + 1); setSelected(null); } }, 650); };
   return <div className="mode-view quiz-view"><div className="mode-title"><div><span className="note-label">QUICK QUIZ · 5 QUESTIONS</span><h2>Make the word stick.</h2><p>Choose the definition that feels most precise.</p></div><div className="quiz-score"><Trophy size={17} /> {score} correct</div></div><div className="quiz-progress"><span style={{ width: `${((index) / quizWords.length) * 100}%` }} /></div><div className="quiz-question"><div className="question-top"><span>QUESTION {index + 1} OF {quizWords.length}</span><Difficulty level={current.dif} /></div><h3>What does <em>{current.w}</em> mean?</h3><div className="quiz-options">{options.map((option, i) => { const right = option === current.m; const state = selected ? right ? "right" : selected === option ? "wrong" : "muted" : ""; return <button key={option} className={`quiz-option ${state}`} onClick={() => choose(option)}><span>{String.fromCharCode(65 + i)}</span><p>{option}</p>{selected && right && <Check size={17} />}{selected === option && !right && <X size={17} />}</button>; })}</div></div><div className="quiz-foot"><CircleHelp size={16} /><span>Take your best guess. You can review every word on the shelf afterwards.</span></div></div>;
+}
+
+function TenseQuizView() {
+  const [tenseIndex, setTenseIndex] = useState(0);
+  const [roundIndex, setRoundIndex] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const currentSet = TENSE_BANK[tenseIndex];
+  const questions = currentSet.rounds[roundIndex].questions;
+  const current = questions[questionIndex];
+  const choose = (index: number) => { if (selected !== null) return; setSelected(index); if (index === current.correct_index) setScore(value => value + 1); };
+  const chooseTense = (index: number) => { setTenseIndex(index); setRoundIndex(0); setQuestionIndex(0); setSelected(null); setScore(0); };
+  const chooseRound = (index: number) => { setRoundIndex(index); setQuestionIndex(0); setSelected(null); setScore(0); };
+  const nextQuestion = () => { if (questionIndex < questions.length - 1) { setQuestionIndex(value => value + 1); setSelected(null); } else { setRoundIndex(value => (value + 1) % currentSet.rounds.length); setQuestionIndex(0); setSelected(null); setScore(0); } };
+  const roundFinished = questionIndex === questions.length - 1 && selected !== null;
+  return <div className="tense-quiz-view"><section className="tense-quiz-intro"><div><span className="note-label">TENSE IDENTIFICATION · 1,200 QUESTIONS</span><h2>Make the timeline<br /><em>automatic.</em></h2><p>Choose one of the 12 tenses, select a round, and identify the sentence that matches the target tense. Every answer includes a quick reason.</p></div><div className="quiz-bank-count"><strong>12</strong><span>tenses</span><strong>120</strong><span>rounds</span><strong>1,200</strong><span>questions</span></div></section><div className="tense-quiz-selectors"><div><span className="note-label">CHOOSE A TENSE</span><div className="tense-quiz-tense-grid">{TENSE_BANK.map((item, index) => <button key={item.tense} className={index === tenseIndex ? "active" : ""} onClick={() => chooseTense(index)}>{item.tense}</button>)}</div></div><div><span className="note-label">CHOOSE A ROUND</span><div className="tense-quiz-round-grid">{currentSet.rounds.map((round, index) => <button key={round.round} className={index === roundIndex ? "active" : ""} onClick={() => chooseRound(index)}>{round.round}</button>)}</div></div></div><div className="tense-quiz-card"><div className="tense-quiz-card-top"><span className="family-tag">{currentSet.tense}</span><span>ROUND {roundIndex + 1} · QUESTION {questionIndex + 1} / {questions.length}</span><strong>{score} correct</strong></div><div className="quiz-progress"><span style={{ width: `${((questionIndex + (selected !== null ? 1 : 0)) / questions.length) * 100}%` }} /></div><h3>{current.prompt}</h3><div className="tense-quiz-options">{current.options.map((option, index) => { const state = selected === null ? "" : index === current.correct_index ? "correct" : index === selected ? "incorrect" : "muted"; return <button key={option} className={state} onClick={() => choose(index)}><span>{String.fromCharCode(65 + index)}</span><p>{option}</p>{selected !== null && index === current.correct_index && <Check size={17} />}</button>; })}</div>{selected !== null && <div className={`tense-quiz-feedback ${selected === current.correct_index ? "correct" : "incorrect"}`}><strong>{selected === current.correct_index ? "Correct." : "Not quite."}</strong><p>{current.explanation}</p></div>}<div className="tense-quiz-footer"><span>Question bank progress: {tenseIndex * 100 + roundIndex * 10 + questionIndex + 1} / 1,200</span>{selected !== null && <button className="coral-btn" onClick={nextQuestion}>{roundFinished ? (roundIndex === 9 ? "Restart tense" : `Next round · ${roundIndex + 2}`) : "Next question"} <ArrowRight size={16} /></button>}</div></div></div>;
 }
 
 function ShadowingView() {
@@ -211,5 +234,5 @@ export default function Home() {
   const filtered = useMemo(() => WORDS.filter(w => (category === "All words" || w.cat === category) && (`${w.w} ${w.m} ${w.cat}`.toLowerCase().includes(query.toLowerCase()))), [category, query]);
   const markLearned = (w: string) => setLearnedWords(prev => { const next = prev.includes(w) ? prev : [...prev, w]; localStorage.setItem("vocab-learned", JSON.stringify(next)); return next; });
   const finishQuiz = (score: number) => { toast.success(`Quiz complete — ${score}/5 correct`, { description: score >= 4 ? "Your word sense is getting sharp." : "Good practice. The shelf is here when you want a review." }); setMode("shelf"); };
-  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenses" && <TensesView />}{mode === "shadowing" && <ShadowingView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
+  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenseQuiz" && <TenseQuizView />}{mode === "tenses" && <TensesView />}{mode === "shadowing" && <ShadowingView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
 }

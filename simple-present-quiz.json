@@ -1,0 +1,1255 @@
+{
+  "tense": "Simple Present",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        {
+          "id": "simplepresent_r1_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya is checking the train schedule.",
+            "Maya checks the train schedule.",
+            "Maya checked the train schedule yesterday.",
+            "Maya was checking the train schedule yesterday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis packs a lunch for work.",
+            "Luis has packed a lunch for work.",
+            "Luis will pack a lunch for work tomorrow.",
+            "Luis had packed a lunch for work before lunch."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha will be practicing the piano after school this evening.",
+            "Aisha practiced the piano after school yesterday.",
+            "Aisha was practicing the piano after school yesterday.",
+            "Aisha practices the piano after school."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus had cooked vegetable soup on Sundays before lunch.",
+            "Marcus will cook vegetable soup on Sundays tomorrow.",
+            "Marcus cooks vegetable soup on Sundays.",
+            "Marcus will have cooked vegetable soup on Sundays by Friday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya was walking to the office yesterday.",
+            "Priya walks to the office.",
+            "Priya will be walking to the office this evening.",
+            "Priya has been walking to the office all morning."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah reads the news before breakfast.",
+            "Noah had read the news before breakfast before lunch.",
+            "Noah will have read the news before breakfast by Friday.",
+            "Noah had been reading the news before breakfast for an hour."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia will have been carrying a reusable bottle for a month by June.",
+            "Sofia will be carrying a reusable bottle this evening.",
+            "Sofia has been carrying a reusable bottle all morning.",
+            "Sofia carries a reusable bottle."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan had been watching the evening game for an hour.",
+            "Jordan will have watched the evening game by Friday.",
+            "Jordan watches the evening game.",
+            "Jordan is watching the evening game."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma has been writing in a daily journal all morning.",
+            "Emma writes in a daily journal.",
+            "Emma will have been writing in a daily journal for a month by June.",
+            "Emma has written in a daily journal."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r1_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel takes the early train.",
+            "Daniel had been taking the early train for an hour.",
+            "Daniel is taking the early train.",
+            "Daniel took the early train yesterday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        {
+          "id": "simplepresent_r2_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan will bring fruit to the picnic tomorrow.",
+            "Jordan will have been bringing fruit to the picnic for a month by June.",
+            "Jordan has brought fruit to the picnic.",
+            "Jordan brings fruit to the picnic."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma taught science at the local school yesterday.",
+            "Emma is teaching science at the local school.",
+            "Emma teaches science at the local school.",
+            "Emma was teaching science at the local school yesterday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel has driven to the market.",
+            "Daniel drives to the market.",
+            "Daniel will drive to the market tomorrow.",
+            "Daniel had driven to the market before lunch."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya chooses the quietest table.",
+            "Maya chose the quietest table yesterday.",
+            "Maya was choosing the quietest table yesterday.",
+            "Maya will be choosing the quietest table this evening."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis will have kept her desk organized by Friday.",
+            "Luis will keep her desk organized tomorrow.",
+            "Luis had kept her desk organized before lunch.",
+            "Luis keeps her desk organized."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha will be sending a weekly update this evening.",
+            "Aisha was sending a weekly update yesterday.",
+            "Aisha sends a weekly update.",
+            "Aisha has been sending a weekly update all morning."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus had met her study group on Fridays before lunch.",
+            "Marcus meets her study group on Fridays.",
+            "Marcus will have met her study group on Fridays by Friday.",
+            "Marcus had been meeting her study group on Fridays for an hour."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya buys fresh bread on the way home.",
+            "Priya will be buying fresh bread on the way home this evening.",
+            "Priya has been buying fresh bread on the way home all morning.",
+            "Priya will have been buying fresh bread on the way home for a month by June."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah is feeling calm before a presentation.",
+            "Noah will have felt calm before a presentation by Friday.",
+            "Noah had been feeling calm before a presentation for an hour.",
+            "Noah feels calm before a presentation."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r2_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia will have been having coffee with breakfast for a month by June.",
+            "Sofia has been having coffee with breakfast all morning.",
+            "Sofia has coffee with breakfast.",
+            "Sofia has had coffee with breakfast."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        {
+          "id": "simplepresent_r3_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya had been knowing the answer to that question for an hour.",
+            "Priya knows the answer to that question.",
+            "Priya is knowing the answer to that question.",
+            "Priya knew the answer to that question yesterday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah prefers tea in the afternoon.",
+            "Noah will have been preferring tea in the afternoon for a month by June.",
+            "Noah has preferred tea in the afternoon.",
+            "Noah will prefer tea in the afternoon tomorrow."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia was needing a quiet place to study yesterday.",
+            "Sofia is needing a quiet place to study.",
+            "Sofia needed a quiet place to study yesterday.",
+            "Sofia needs a quiet place to study."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan will visit her grandparents each month tomorrow.",
+            "Jordan has visited her grandparents each month.",
+            "Jordan visits her grandparents each month.",
+            "Jordan had visited her grandparents each month before lunch."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma finished work before dinner yesterday.",
+            "Emma finishes work before dinner.",
+            "Emma was finishing work before dinner yesterday.",
+            "Emma will be finishing work before dinner this evening."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel checks the train schedule.",
+            "Daniel will check the train schedule tomorrow.",
+            "Daniel had checked the train schedule before lunch.",
+            "Daniel will have checked the train schedule by Friday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya has been packing a lunch for work all morning.",
+            "Maya was packing a lunch for work yesterday.",
+            "Maya will be packing a lunch for work this evening.",
+            "Maya packs a lunch for work."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis will have practiced the piano after school by Friday.",
+            "Luis had practiced the piano after school before lunch.",
+            "Luis practices the piano after school.",
+            "Luis had been practicing the piano after school for an hour."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha will be cooking vegetable soup on Sundays this evening.",
+            "Aisha cooks vegetable soup on Sundays.",
+            "Aisha has been cooking vegetable soup on Sundays all morning.",
+            "Aisha will have been cooking vegetable soup on Sundays for a month by June."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r3_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus walks to the office.",
+            "Marcus will have walked to the office by Friday.",
+            "Marcus had been walking to the office for an hour.",
+            "Marcus is walking to the office."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        {
+          "id": "simplepresent_r4_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis has read the news before breakfast.",
+            "Luis has been reading the news before breakfast all morning.",
+            "Luis will have been reading the news before breakfast for a month by June.",
+            "Luis reads the news before breakfast."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha is carrying a reusable bottle.",
+            "Aisha had been carrying a reusable bottle for an hour.",
+            "Aisha carries a reusable bottle.",
+            "Aisha carried a reusable bottle yesterday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus will have been watching the evening game for a month by June.",
+            "Marcus watches the evening game.",
+            "Marcus has watched the evening game.",
+            "Marcus will watch the evening game tomorrow."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya writes in a daily journal.",
+            "Priya is writing in a daily journal.",
+            "Priya wrote in a daily journal yesterday.",
+            "Priya was writing in a daily journal yesterday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah had taken the early train before lunch.",
+            "Noah has taken the early train.",
+            "Noah will take the early train tomorrow.",
+            "Noah takes the early train."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia was bringing fruit to the picnic yesterday.",
+            "Sofia brought fruit to the picnic yesterday.",
+            "Sofia brings fruit to the picnic.",
+            "Sofia will be bringing fruit to the picnic this evening."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan will teach science at the local school tomorrow.",
+            "Jordan teaches science at the local school.",
+            "Jordan had taught science at the local school before lunch.",
+            "Jordan will have taught science at the local school by Friday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma drives to the market.",
+            "Emma was driving to the market yesterday.",
+            "Emma will be driving to the market this evening.",
+            "Emma has been driving to the market all morning."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel had been choosing the quietest table for an hour.",
+            "Daniel had chosen the quietest table before lunch.",
+            "Daniel will have chosen the quietest table by Friday.",
+            "Daniel chooses the quietest table."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r4_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya has been keeping her desk organized all morning.",
+            "Maya will be keeping her desk organized this evening.",
+            "Maya keeps her desk organized.",
+            "Maya will have been keeping her desk organized for a month by June."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        {
+          "id": "simplepresent_r5_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma will have sent a weekly update by Friday.",
+            "Emma sends a weekly update.",
+            "Emma had been sending a weekly update for an hour.",
+            "Emma is sending a weekly update."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel meets her study group on Fridays.",
+            "Daniel has been meeting her study group on Fridays all morning.",
+            "Daniel will have been meeting her study group on Fridays for a month by June.",
+            "Daniel has met her study group on Fridays."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya bought fresh bread on the way home yesterday.",
+            "Maya had been buying fresh bread on the way home for an hour.",
+            "Maya is buying fresh bread on the way home.",
+            "Maya buys fresh bread on the way home."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis has felt calm before a presentation.",
+            "Luis will have been feeling calm before a presentation for a month by June.",
+            "Luis feels calm before a presentation.",
+            "Luis will feel calm before a presentation tomorrow."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha is having coffee with breakfast.",
+            "Aisha has coffee with breakfast.",
+            "Aisha had coffee with breakfast yesterday.",
+            "Aisha was having coffee with breakfast yesterday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus knows the answer to that question.",
+            "Marcus has known the answer to that question.",
+            "Marcus will know the answer to that question tomorrow.",
+            "Marcus had known the answer to that question before lunch."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya will be preferring tea in the afternoon this evening.",
+            "Priya preferred tea in the afternoon yesterday.",
+            "Priya was preferring tea in the afternoon yesterday.",
+            "Priya prefers tea in the afternoon."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah had needed a quiet place to study before lunch.",
+            "Noah will need a quiet place to study tomorrow.",
+            "Noah needs a quiet place to study.",
+            "Noah will have needed a quiet place to study by Friday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia was visiting her grandparents each month yesterday.",
+            "Sofia visits her grandparents each month.",
+            "Sofia will be visiting her grandparents each month this evening.",
+            "Sofia has been visiting her grandparents each month all morning."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r5_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan finishes work before dinner.",
+            "Jordan had finished work before dinner before lunch.",
+            "Jordan will have finished work before dinner by Friday.",
+            "Jordan had been finishing work before dinner for an hour."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        {
+          "id": "simplepresent_r6_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah will have been checking the train schedule for a month by June.",
+            "Noah will be checking the train schedule this evening.",
+            "Noah has been checking the train schedule all morning.",
+            "Noah checks the train schedule."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia had been packing a lunch for work for an hour.",
+            "Sofia will have packed a lunch for work by Friday.",
+            "Sofia packs a lunch for work.",
+            "Sofia is packing a lunch for work."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan has been practicing the piano after school all morning.",
+            "Jordan practices the piano after school.",
+            "Jordan will have been practicing the piano after school for a month by June.",
+            "Jordan has practiced the piano after school."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma cooks vegetable soup on Sundays.",
+            "Emma had been cooking vegetable soup on Sundays for an hour.",
+            "Emma is cooking vegetable soup on Sundays.",
+            "Emma cooked vegetable soup on Sundays yesterday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel will walk to the office tomorrow.",
+            "Daniel will have been walking to the office for a month by June.",
+            "Daniel has walked to the office.",
+            "Daniel walks to the office."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya read the news before breakfast yesterday.",
+            "Maya is reading the news before breakfast.",
+            "Maya reads the news before breakfast.",
+            "Maya was reading the news before breakfast yesterday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis has carried a reusable bottle.",
+            "Luis carries a reusable bottle.",
+            "Luis will carry a reusable bottle tomorrow.",
+            "Luis had carried a reusable bottle before lunch."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha watches the evening game.",
+            "Aisha watched the evening game yesterday.",
+            "Aisha was watching the evening game yesterday.",
+            "Aisha will be watching the evening game this evening."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus will have written in a daily journal by Friday.",
+            "Marcus will write in a daily journal tomorrow.",
+            "Marcus had written in a daily journal before lunch.",
+            "Marcus writes in a daily journal."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r6_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya will be taking the early train this evening.",
+            "Priya was taking the early train yesterday.",
+            "Priya takes the early train.",
+            "Priya has been taking the early train all morning."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        {
+          "id": "simplepresent_r7_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha had brought fruit to the picnic before lunch.",
+            "Aisha brings fruit to the picnic.",
+            "Aisha will have brought fruit to the picnic by Friday.",
+            "Aisha had been bringing fruit to the picnic for an hour."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus teaches science at the local school.",
+            "Marcus will be teaching science at the local school this evening.",
+            "Marcus has been teaching science at the local school all morning.",
+            "Marcus will have been teaching science at the local school for a month by June."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya is driving to the market.",
+            "Priya will have driven to the market by Friday.",
+            "Priya had been driving to the market for an hour.",
+            "Priya drives to the market."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah will have been choosing the quietest table for a month by June.",
+            "Noah has been choosing the quietest table all morning.",
+            "Noah chooses the quietest table.",
+            "Noah has chosen the quietest table."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia had been keeping her desk organized for an hour.",
+            "Sofia keeps her desk organized.",
+            "Sofia is keeping her desk organized.",
+            "Sofia kept her desk organized yesterday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan sends a weekly update.",
+            "Jordan will have been sending a weekly update for a month by June.",
+            "Jordan has sent a weekly update.",
+            "Jordan will send a weekly update tomorrow."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma was meeting her study group on Fridays yesterday.",
+            "Emma is meeting her study group on Fridays.",
+            "Emma met her study group on Fridays yesterday.",
+            "Emma meets her study group on Fridays."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel will buy fresh bread on the way home tomorrow.",
+            "Daniel has bought fresh bread on the way home.",
+            "Daniel buys fresh bread on the way home.",
+            "Daniel had bought fresh bread on the way home before lunch."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya felt calm before a presentation yesterday.",
+            "Maya feels calm before a presentation.",
+            "Maya was feeling calm before a presentation yesterday.",
+            "Maya will be feeling calm before a presentation this evening."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r7_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis has coffee with breakfast.",
+            "Luis will have coffee with breakfast tomorrow.",
+            "Luis had had coffee with breakfast before lunch.",
+            "Luis will have had coffee with breakfast by Friday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "questions": [
+        {
+          "id": "simplepresent_r8_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel has been knowing the answer to that question all morning.",
+            "Daniel was knowing the answer to that question yesterday.",
+            "Daniel will be knowing the answer to that question this evening.",
+            "Daniel knows the answer to that question."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya will have preferred tea in the afternoon by Friday.",
+            "Maya had preferred tea in the afternoon before lunch.",
+            "Maya prefers tea in the afternoon.",
+            "Maya had been preferring tea in the afternoon for an hour."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis will be needing a quiet place to study this evening.",
+            "Luis needs a quiet place to study.",
+            "Luis has been needing a quiet place to study all morning.",
+            "Luis will have been needing a quiet place to study for a month by June."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha visits her grandparents each month.",
+            "Aisha will have visited her grandparents each month by Friday.",
+            "Aisha had been visiting her grandparents each month for an hour.",
+            "Aisha is visiting her grandparents each month."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus has finished work before dinner.",
+            "Marcus has been finishing work before dinner all morning.",
+            "Marcus will have been finishing work before dinner for a month by June.",
+            "Marcus finishes work before dinner."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya is checking the train schedule.",
+            "Priya had been checking the train schedule for an hour.",
+            "Priya checks the train schedule.",
+            "Priya checked the train schedule yesterday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah will have been packing a lunch for work for a month by June.",
+            "Noah packs a lunch for work.",
+            "Noah has packed a lunch for work.",
+            "Noah will pack a lunch for work tomorrow."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia practices the piano after school.",
+            "Sofia is practicing the piano after school.",
+            "Sofia practiced the piano after school yesterday.",
+            "Sofia was practicing the piano after school yesterday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan had cooked vegetable soup on Sundays before lunch.",
+            "Jordan has cooked vegetable soup on Sundays.",
+            "Jordan will cook vegetable soup on Sundays tomorrow.",
+            "Jordan cooks vegetable soup on Sundays."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r8_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma was walking to the office yesterday.",
+            "Emma walked to the office yesterday.",
+            "Emma walks to the office.",
+            "Emma will be walking to the office this evening."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "questions": [
+        {
+          "id": "simplepresent_r9_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia will read the news before breakfast tomorrow.",
+            "Sofia reads the news before breakfast.",
+            "Sofia had read the news before breakfast before lunch.",
+            "Sofia will have read the news before breakfast by Friday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan carries a reusable bottle.",
+            "Jordan was carrying a reusable bottle yesterday.",
+            "Jordan will be carrying a reusable bottle this evening.",
+            "Jordan has been carrying a reusable bottle all morning."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma had been watching the evening game for an hour.",
+            "Emma had watched the evening game before lunch.",
+            "Emma will have watched the evening game by Friday.",
+            "Emma watches the evening game."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel has been writing in a daily journal all morning.",
+            "Daniel will be writing in a daily journal this evening.",
+            "Daniel writes in a daily journal.",
+            "Daniel will have been writing in a daily journal for a month by June."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya will have taken the early train by Friday.",
+            "Maya takes the early train.",
+            "Maya had been taking the early train for an hour.",
+            "Maya is taking the early train."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis brings fruit to the picnic.",
+            "Luis has been bringing fruit to the picnic all morning.",
+            "Luis will have been bringing fruit to the picnic for a month by June.",
+            "Luis has brought fruit to the picnic."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha taught science at the local school yesterday.",
+            "Aisha had been teaching science at the local school for an hour.",
+            "Aisha is teaching science at the local school.",
+            "Aisha teaches science at the local school."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus has driven to the market.",
+            "Marcus will have been driving to the market for a month by June.",
+            "Marcus drives to the market.",
+            "Marcus will drive to the market tomorrow."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya is choosing the quietest table.",
+            "Priya chooses the quietest table.",
+            "Priya chose the quietest table yesterday.",
+            "Priya was choosing the quietest table yesterday."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r9_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah keeps her desk organized.",
+            "Noah has kept her desk organized.",
+            "Noah will keep her desk organized tomorrow.",
+            "Noah had kept her desk organized before lunch."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "questions": [
+        {
+          "id": "simplepresent_r10_q1",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Marcus will be sending a weekly update this evening.",
+            "Marcus sent a weekly update yesterday.",
+            "Marcus was sending a weekly update yesterday.",
+            "Marcus sends a weekly update."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q2",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Priya had met her study group on Fridays before lunch.",
+            "Priya will meet her study group on Fridays tomorrow.",
+            "Priya meets her study group on Fridays.",
+            "Priya will have met her study group on Fridays by Friday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q3",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Noah was buying fresh bread on the way home yesterday.",
+            "Noah buys fresh bread on the way home.",
+            "Noah will be buying fresh bread on the way home this evening.",
+            "Noah has been buying fresh bread on the way home all morning."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q4",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Sofia feels calm before a presentation.",
+            "Sofia had felt calm before a presentation before lunch.",
+            "Sofia will have felt calm before a presentation by Friday.",
+            "Sofia had been feeling calm before a presentation for an hour."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q5",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Jordan will have been having coffee with breakfast for a month by June.",
+            "Jordan will be having coffee with breakfast this evening.",
+            "Jordan has been having coffee with breakfast all morning.",
+            "Jordan has coffee with breakfast."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q6",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Emma had been knowing the answer to that question for an hour.",
+            "Emma will have known the answer to that question by Friday.",
+            "Emma knows the answer to that question.",
+            "Emma is knowing the answer to that question."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q7",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Daniel has been preferring tea in the afternoon all morning.",
+            "Daniel prefers tea in the afternoon.",
+            "Daniel will have been preferring tea in the afternoon for a month by June.",
+            "Daniel has preferred tea in the afternoon."
+          ],
+          "correct_index": 1,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q8",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Maya needs a quiet place to study.",
+            "Maya had been needing a quiet place to study for an hour.",
+            "Maya is needing a quiet place to study.",
+            "Maya needed a quiet place to study yesterday."
+          ],
+          "correct_index": 0,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q9",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Luis will visit her grandparents each month tomorrow.",
+            "Luis will have been visiting her grandparents each month for a month by June.",
+            "Luis has visited her grandparents each month.",
+            "Luis visits her grandparents each month."
+          ],
+          "correct_index": 3,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        },
+        {
+          "id": "simplepresent_r10_q10",
+          "prompt": "Which sentence shows Simple Present?",
+          "options": [
+            "Aisha finished work before dinner yesterday.",
+            "Aisha is finishing work before dinner.",
+            "Aisha finishes work before dinner.",
+            "Aisha was finishing work before dinner yesterday."
+          ],
+          "correct_index": 2,
+          "explanation": "The sentence uses the simple present form, with the base verb for I/you/we/they or the third-person -s form for one person."
+        }
+      ]
+    }
+  ]
+}

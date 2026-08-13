@@ -1,6 +1,7 @@
-# Separated shadowing collection checklist
+# Full tense quiz integration checklist
 
-- [ ] Present the 100 additional lines as separate selectable practice items.
-- [ ] Keep one-sentence audio, recording, scoring, and completion controls per item.
-- [ ] Verify the passage picker and sentence navigation remain clear.
-- [ ] Build, checkpoint, deploy, and verify the corrected GitHub Pages site.
+- [ ] Generate 12 tense banks with 100 questions each.
+- [ ] Validate 1,200 unique IDs, 120 rounds, four options, and one correct index per question.
+- [ ] Add tense and round selection to the website quiz experience.
+- [ ] Add explanations, scoring, and progress persistence.
+- [ ] Build, checkpoint, publish, and verify the GitHub Pages update.
