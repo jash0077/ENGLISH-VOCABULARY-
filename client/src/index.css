@@ -118,3 +118,9 @@
 .speech-results { display: grid; grid-template-columns: 1.25fr repeat(3, 1fr); gap: .6rem; margin-top: 1rem; }.speech-results > div { display: grid; align-content: center; gap: .45rem; min-height: 100px; padding: .85rem; background: #eef1f3; }.speech-results strong { color: var(--ink); font: 700 clamp(1.5rem, 3vw, 2.3rem)/1 var(--display); }.speech-results small { color: var(--muted); font: .68rem/1.35 var(--sans); }.speech-results .score-primary { background: var(--ink); }.speech-results .score-primary span, .speech-results .score-primary small { color: rgba(255,250,240,.7); }.speech-results .score-primary strong { color: var(--citron); }
 .shadowing-nav button:disabled { opacity: .35; cursor: not-allowed; }.shadowing-dots i.done { background: var(--citron); }
 @media (max-width: 760px) { .passage-picker-head { align-items: flex-start; flex-direction: column; }.speech-results { grid-template-columns: repeat(2, 1fr); }.speech-results .score-primary { grid-column: 1 / -1; } }
+
+/* Editorial Study Hall — technique audio: a small spoken annotation attached directly to the coaching note. */
+.shadowing-tip { flex-wrap: wrap; align-items: center; }
+.shadowing-tip > span { flex: 1 1 300px; }
+.shadowing-tip .speak-button { border-color: rgba(35,57,78,.2); background: #f4eedf; color: var(--ink); padding: .4rem .55rem; font-size: .58rem; }
+.shadowing-tip .speak-button:hover, .shadowing-tip .speak-button.speaking { border-color: var(--coral); background: var(--coral); color: #fffaf0; }
