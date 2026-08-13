@@ -1,6 +1,7 @@
-# GitHub Pages error-fix checklist
+# Batched vocabulary expansion checklist
 
-- [ ] Inspect the live site and latest Actions run diagnostics.
-- [ ] Identify the user-visible failure and its root cause.
-- [ ] Apply a targeted fix and verify the production build.
-- [ ] Redeploy and confirm the live GitHub Pages result.
+- [ ] Prepare the next validated 500-word advanced vocabulary batch.
+- [ ] Add the batch without duplicating existing words.
+- [ ] Keep search, category filters, flashcards, quizzes, and progress tracking functional.
+- [ ] Run the production build and publish the batch to GitHub Pages.
+- [ ] Report the current total and continue with another batch when requested.
