@@ -57,3 +57,12 @@
 - [x] Include the selected difficulty in the generation prompt and generated result state.
 - [x] Validate loading, retry, fallback, audio, and production build behavior.
 - [x] Save and publish the difficulty-selector update.
+
+## Advanced AI sentence practice
+
+- [x] Add context selection for conversation, academic writing, business, travel, and exam practice.
+- [x] Add sentence-style selection for statement, question, negative, and contrast sentence forms.
+- [x] Request richer AI output with sentence, translation-free usage note, collocations, and a follow-up challenge.
+- [x] Add generated-result cards with pronunciation, copy, regenerate, and challenge controls.
+- [x] Validate advanced controls, fallback behavior, audio, and production build.
+- [x] Save and publish the advanced sentence-practice update.

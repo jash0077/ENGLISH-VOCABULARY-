@@ -11,6 +11,8 @@ const sentenceInput = z.object({
   partOfSpeech: z.string().trim().min(1).max(40),
   category: z.enum(["Everyday", "Academic", "Business"]),
   difficulty: z.enum(["Beginner", "Intermediate", "Advanced"]),
+  context: z.enum(["Conversation", "Academic writing", "Business", "Travel", "Exam practice"]),
+  style: z.enum(["Statement", "Question", "Negative", "Contrast"]),
 });
 
 export const appRouter = router({
@@ -37,7 +39,7 @@ export const appRouter = router({
           },
           {
             role: "user",
-            content: `Create one short example sentence for the vocabulary word \"${input.word}\". Meaning: ${input.meaning}. Part of speech: ${input.partOfSpeech}. Learning category: ${input.category}. Difficulty: ${input.difficulty}. For Beginner, use simple grammar and familiar context; for Intermediate, use a natural multi-clause context; for Advanced, use nuanced precise context while keeping the meaning clear. The sentence must use the word naturally, be 8–20 words, and make the meaning clear. Also provide a brief learner tip suited to this difficulty.`,
+            content: `Create one short example sentence for the vocabulary word \"${input.word}\". Meaning: ${input.meaning}. Part of speech: ${input.partOfSpeech}. Learning category: ${input.category}. Difficulty: ${input.difficulty}. Context: ${input.context}. Sentence style: ${input.style}. For Beginner, use simple grammar and familiar context; for Intermediate, use a natural multi-clause context; for Advanced, use nuanced precise context while keeping the meaning clear. The sentence must use the word naturally, be 8–24 words, and make the meaning clear. Match the requested style exactly. Also provide a brief usage note, three useful collocations or phrases, and one follow-up challenge question.`,
           },
         ],
         response_format: {
@@ -49,9 +51,11 @@ export const appRouter = router({
               type: "object",
               properties: {
                 sentence: { type: "string", description: "One natural example sentence." },
-                tip: { type: "string", description: "A brief usage tip for the learner." },
+                tip: { type: "string", description: "A brief usage note for the learner." },
+                collocations: { type: "array", items: { type: "string" }, description: "Three useful collocations or phrases." },
+                challenge: { type: "string", description: "One short follow-up challenge question." },
               },
-              required: ["sentence", "tip"],
+              required: ["sentence", "tip", "collocations", "challenge"],
               additionalProperties: false,
             },
           },
@@ -61,9 +65,9 @@ export const appRouter = router({
 
       const content = response.choices[0]?.message.content;
       if (typeof content !== "string") throw new Error("The sentence generator returned no text.");
-      const parsed = JSON.parse(content) as { sentence?: unknown; tip?: unknown };
-      if (typeof parsed.sentence !== "string" || typeof parsed.tip !== "string") throw new Error("The sentence generator returned an invalid response.");
-      return { sentence: parsed.sentence.trim(), tip: parsed.tip.trim() };
+      const parsed = JSON.parse(content) as { sentence?: unknown; tip?: unknown; collocations?: unknown; challenge?: unknown };
+      if (typeof parsed.sentence !== "string" || typeof parsed.tip !== "string" || !Array.isArray(parsed.collocations) || parsed.collocations.some(item => typeof item !== "string") || typeof parsed.challenge !== "string") throw new Error("The sentence generator returned an invalid response.");
+      return { sentence: parsed.sentence.trim(), tip: parsed.tip.trim(), collocations: parsed.collocations.map(item => item.trim()).filter(Boolean).slice(0, 3), challenge: parsed.challenge.trim() };
     }),
   }),
 
