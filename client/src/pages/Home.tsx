@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ADVANCED_WORDS } from "@/data/advancedVocabulary";
+import { TENSES, type TenseLesson } from "@/data/tenses";
 
 const CORE_WORDS = [
   { w: "ubiquitous", p: "adj.", ph: "yoo-BIK-wi-tuhs", m: "present or found everywhere at once.", ex: "Smartphones have become ubiquitous in modern life.", syn: ["omnipresent", "pervasive", "widespread"], cat: "Everyday", dif: 2 },
@@ -51,7 +52,7 @@ const CORE_WORDS = [
 const WORDS = [...CORE_WORDS, ...ADVANCED_WORDS] as const;
 
 type Word = (typeof WORDS)[number];
-type Mode = "shelf" | "flashcards" | "quiz";
+type Mode = "shelf" | "flashcards" | "quiz" | "tenses";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary", "Advanced"];
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -69,6 +70,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
     { id: "shelf" as Mode, label: "Word shelf", icon: BookOpen },
     { id: "flashcards" as Mode, label: "Flashcards", icon: Layers3 },
     { id: "quiz" as Mode, label: "Quick quiz", icon: Target },
+    { id: "tenses" as Mode, label: "Tenses", icon: Sparkles },
   ];
   return <aside className="rail">
     <div className="rail-top"><Logo /><button className="icon-btn mobile-menu" aria-label="Open menu"><Menu size={20} /></button></div>
@@ -83,7 +85,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
 }
 
 function Header({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
-  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : "Make the word stick."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : "A short check-in across today’s shelf — no pressure, just practice."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
+  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : "Make your sentences clearer."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : "A friendly guide to the 12 ways English places an action in time."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
 }
 
 function Shelf({ words, category, setCategory, query, setQuery, setMode, learned, markLearned }: { words: readonly Word[]; category: string; setCategory: (v: string) => void; query: string; setQuery: (v: string) => void; setMode: (m: Mode) => void; learned: number; markLearned: (w: string) => void }) {
@@ -108,10 +110,24 @@ function Quiz({ words, onFinish, markLearned }: { words: readonly Word[]; onFini
   return <div className="mode-view quiz-view"><div className="mode-title"><div><span className="note-label">QUICK QUIZ · 5 QUESTIONS</span><h2>Make the word stick.</h2><p>Choose the definition that feels most precise.</p></div><div className="quiz-score"><Trophy size={17} /> {score} correct</div></div><div className="quiz-progress"><span style={{ width: `${((index) / quizWords.length) * 100}%` }} /></div><div className="quiz-question"><div className="question-top"><span>QUESTION {index + 1} OF {quizWords.length}</span><Difficulty level={current.dif} /></div><h3>What does <em>{current.w}</em> mean?</h3><div className="quiz-options">{options.map((option, i) => { const right = option === current.m; const state = selected ? right ? "right" : selected === option ? "wrong" : "muted" : ""; return <button key={option} className={`quiz-option ${state}`} onClick={() => choose(option)}><span>{String.fromCharCode(65 + i)}</span><p>{option}</p>{selected && right && <Check size={17} />}{selected === option && !right && <X size={17} />}</button>; })}</div></div><div className="quiz-foot"><CircleHelp size={16} /><span>Take your best guess. You can review every word on the shelf afterwards.</span></div></div>;
 }
 
+function TensesView() {
+  const [family, setFamily] = useState<"All" | TenseLesson["family"]>("All");
+  const [selected, setSelected] = useState(TENSES[0].id);
+  const [practice, setPractice] = useState<string | null>(null);
+  const visible = family === "All" ? TENSES : TENSES.filter(t => t.family === family);
+  const current = TENSES.find(t => t.id === selected) ?? TENSES[0];
+  const answers = ["Maya is reading a new novel this week.", "Maya read the first chapter last night.", "Maya will read the next chapter tomorrow."];
+  return <div className="tenses-view">
+    <section className="tense-intro"><div><span className="note-label">GRAMMAR DESK · 12 TENSES</span><h2>Put every action<br /><em>in its place.</em></h2><p>English tenses are just a timeline. Start with when the action happens, then notice whether it is a habit, in progress, or complete.</p></div><div className="timeline-art"><span>PAST</span><i /><span>NOW</span><i /><span>NEXT</span></div></section>
+    <div className="tense-toolbar"><div><span className="note-label">THE TENSE MAP</span><h2>Choose a tense</h2></div><div className="tense-filters">{["All", "Present", "Past", "Future"].map(item => <button key={item} className={family === item ? "selected" : ""} onClick={() => setFamily(item as typeof family)}>{item}</button>)}</div></div>
+    <div className="tense-layout"><div className="tense-list">{visible.map((tense, index) => <button key={tense.id} className={`tense-list-item ${selected === tense.id ? "active" : ""}`} onClick={() => { setSelected(tense.id); setPractice(null); }}><span>{String(TENSES.indexOf(tense) + 1).padStart(2, "0")}</span><div><strong>{tense.name}</strong><small>{tense.family} · {tense.short}</small></div><ChevronRight size={16} /></button>)}</div><article className="tense-card"><div className="tense-card-top"><span className={`family-tag ${current.family.toLowerCase()}`}>{current.family}</span><span className="tense-number">LESSON {String(TENSES.indexOf(current) + 1).padStart(2, "0")} / 12</span></div><h3>{current.name}</h3><p className="tense-short">{current.short}</p><div className="tense-block"><span>WHEN TO USE IT</span><p>{current.use}</p></div><div className="tense-block structure-block"><span>THE SHAPE</span><strong>{current.structure}</strong></div><div className="tense-example"><span>EXAMPLE</span><p>“{current.example}”</p><div><b>Negative:</b> {current.negative}<br /><b>Question:</b> {current.question}</div></div><div className="tense-clues"><span>CLUE WORDS</span>{current.clues.map(clue => <b key={clue}>{clue}</b>)}</div><div className="tense-tip"><Lightbulb size={17} /><p><strong>Easy way to remember:</strong> {current.tip}</p></div><div className="tense-practice"><span>QUICK CHECK</span><p>Which sentence shows <strong>{current.name}</strong>?</p>{answers.map(answer => <button key={answer} className={practice === answer ? answer === current.example ? "correct" : "incorrect" : ""} onClick={() => setPractice(answer)}>{answer}</button>)}</div></article></div>
+  </div>;
+}
+
 export default function Home() {
   const [mode, setMode] = useState<Mode>("shelf"); const [category, setCategory] = useState("All words"); const [query, setQuery] = useState(""); const [learnedWords, setLearnedWords] = useState<string[]>(() => JSON.parse(localStorage.getItem("vocab-learned") || "[]")); const [streak] = useState(4);
   const filtered = useMemo(() => WORDS.filter(w => (category === "All words" || w.cat === category) && (`${w.w} ${w.m} ${w.cat}`.toLowerCase().includes(query.toLowerCase()))), [category, query]);
   const markLearned = (w: string) => setLearnedWords(prev => { const next = prev.includes(w) ? prev : [...prev, w]; localStorage.setItem("vocab-learned", JSON.stringify(next)); return next; });
   const finishQuiz = (score: number) => { toast.success(`Quiz complete — ${score}/5 correct`, { description: score >= 4 ? "Your word sense is getting sharp." : "Good practice. The shelf is here when you want a review." }); setMode("shelf"); };
-  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
+  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenses" && <TensesView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
 }

@@ -1,7 +1,7 @@
-# Batched vocabulary expansion checklist
+# Tenses section checklist
 
-- [ ] Prepare the next validated 500-word advanced vocabulary batch.
-- [ ] Add the batch without duplicating existing words.
-- [ ] Keep search, category filters, flashcards, quizzes, and progress tracking functional.
-- [ ] Run the production build and publish the batch to GitHub Pages.
-- [ ] Report the current total and continue with another batch when requested.
+- [ ] Prepare original explanations for all 12 English tenses.
+- [ ] Add structures, use cases, examples, and sentence patterns.
+- [ ] Add the Tenses section to the study navigation.
+- [ ] Add interactive tense cards and a quick practice check.
+- [ ] Build, deploy, and verify the GitHub Pages site.
