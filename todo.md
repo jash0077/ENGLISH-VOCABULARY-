@@ -1,6 +1,7 @@
-# GitHub publishing checklist
+# GitHub Pages deployment checklist
 
-- [ ] Verify the session's secure GitHub authentication without reading or using chat-provided tokens.
-- [ ] Push the completed project to `jash0077/ENGLISH-VOCABULARY-`.
-- [ ] Verify the remote repository contains the new files and commit.
-- [ ] Report the repository URL without exposing credentials.
+- [ ] Configure Vite for the repository subpath `/ENGLISH-VOCABULARY-/`.
+- [ ] Add a GitHub Actions workflow that builds and deploys `dist/public` to GitHub Pages.
+- [ ] Verify TypeScript and production builds locally.
+- [ ] Push the workflow and configuration to the `main` branch.
+- [ ] Confirm GitHub Pages settings and share the expected site URL.

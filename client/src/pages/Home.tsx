@@ -51,9 +51,10 @@ type Word = (typeof WORDS)[number];
 type Mode = "shelf" | "flashcards" | "quiz";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary"];
+const ASSET_BASE = import.meta.env.BASE_URL;
 
 function Logo() {
-  return <div className="brand-mark" aria-label="Vocab Studio logo"><img src="/manus-storage/vocab-mark_d67a1524.png" alt="" /><span>vocab<br /><em>studio</em></span></div>;
+  return <div className="brand-mark" aria-label="Vocab Studio logo"><img src={`${ASSET_BASE}assets/vocab-mark.png`} alt="" /><span>vocab<br /><em>studio</em></span></div>;
 }
 
 function Difficulty({ level }: { level: number }) {
@@ -84,7 +85,7 @@ function Header({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
 
 function Shelf({ words, category, setCategory, query, setQuery, setMode, learned, markLearned }: { words: readonly Word[]; category: string; setCategory: (v: string) => void; query: string; setQuery: (v: string) => void; setMode: (m: Mode) => void; learned: number; markLearned: (w: string) => void }) {
   return <div className="shelf-view">
-    <section className="hero-note"><div><span className="note-label">FIELD NOTE 01</span><h2>Words worth<br /><em>keeping.</em></h2><p>Good vocabulary is not about sounding clever. It is about being more exact when it matters.</p><button className="coral-btn" onClick={() => setMode("flashcards")}>Study today’s set <ArrowRight size={17} /></button></div><div className="hero-art"><img src="/manus-storage/vocab-paper-hero_a74d9186.png" alt="Paper cards and a coral pencil" /><span className="art-stamp">24<br /><small>WORDS</small></span></div></section>
+    <section className="hero-note"><div><span className="note-label">FIELD NOTE 01</span><h2>Words worth<br /><em>keeping.</em></h2><p>Good vocabulary is not about sounding clever. It is about being more exact when it matters.</p><button className="coral-btn" onClick={() => setMode("flashcards")}>Study today’s set <ArrowRight size={17} /></button></div><div className="hero-art"><img src={`${ASSET_BASE}assets/vocab-paper-hero.png`} alt="Paper cards and a coral pencil" /><span className="art-stamp">24<br /><small>WORDS</small></span></div></section>
     <div className="section-head"><div><span className="note-label">THE SHELF</span><h2>Choose a corner</h2></div><div className="search-wrap"><Search size={17} /><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search a word…" aria-label="Search words" /></div></div>
     <div className="category-row">{CATEGORIES.map(c => <button key={c} onClick={() => setCategory(c)} className={category === c ? "selected" : ""}>{c}<span>{c === "All words" ? WORDS.length : WORDS.filter(w => w.cat === c).length}</span></button>)}</div>
     <div className="word-list">{words.map((word, index) => <article className="word-row" key={word.w} style={{ "--delay": `${index * 35}ms` } as React.CSSProperties}><div className="word-index">{String(index + 1).padStart(2, "0")}</div><div className="word-main"><div className="word-title"><h3>{word.w}</h3><span>{word.p}</span></div><p>{word.m}</p><div className="word-meta"><span>/{word.ph}/</span><span className="dot" /> <span>{word.cat}</span></div></div><div className="word-side"><Difficulty level={word.dif} /><button className={`learn-btn ${learned >= 1 && false ? "done" : ""}`} onClick={() => markLearned(word.w)}>{learned > 0 && index < learned ? <Check size={16} /> : "Mark learned"}</button></div></article>)}</div>
