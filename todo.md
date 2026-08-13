@@ -137,12 +137,20 @@
 
 ## GitHub Pages synchronization
 
-- [ ] Compare GitHub main with the latest verified Vocab Studio checkpoint.
-- [ ] Push the latest build and deployment workflow to the user’s GitHub repository.
-- [ ] Verify GitHub Actions completes and the deployed site includes Dashboard and US Phonetics.
-- [ ] Report the correct URL, cache-refresh steps, and deployment state.
+- [x] Compare GitHub main with the latest verified Vocab Studio checkpoint.
+- [x] Push the latest build and deployment workflow to the user’s GitHub repository.
+- [x] Verify GitHub Actions completes and the deployed site includes Dashboard and US Phonetics.
+- [x] Report the correct URL, cache-refresh steps, and deployment state.
 
 ## GitHub Pages root-route fix
 
-- [ ] Add a GitHub Pages fallback redirect so the repository URL opens index.html instead of showing 404.
-- [ ] Push the redirect and verify both the root URL and explicit index URL.
+- [x] Add a GitHub Pages fallback redirect so the repository URL opens index.html instead of showing 404.
+- [x] Push the redirect and verify both the root URL and explicit index URL.
+
+## Phonetics sound playback
+
+- [x] Add a clearly labeled Play sound control for every IPA phoneme.
+- [x] Add individual US-English playback controls for example words and repeat practice.
+- [x] Add active speaking state, stop behavior, and unsupported-browser feedback.
+- [x] Validate phonetics audio controls, responsive layout, and GitHub Pages deployment.
+- [ ] Save and publish the phonetics sound update.
