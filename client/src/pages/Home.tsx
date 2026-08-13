@@ -11,6 +11,7 @@ import {
   Layers3,
   Lightbulb,
   Menu,
+  Mic,
   RotateCw,
   Search,
   Sparkles,
@@ -23,6 +24,7 @@ import {
 import { toast } from "sonner";
 import { ADVANCED_WORDS } from "@/data/advancedVocabulary";
 import { TENSES, type TenseLesson } from "@/data/tenses";
+import { SHADOWING_LINES } from "@/data/shadowing";
 
 const CORE_WORDS = [
   { w: "ubiquitous", p: "adj.", ph: "yoo-BIK-wi-tuhs", m: "present or found everywhere at once.", ex: "Smartphones have become ubiquitous in modern life.", syn: ["omnipresent", "pervasive", "widespread"], cat: "Everyday", dif: 2 },
@@ -54,7 +56,7 @@ const CORE_WORDS = [
 const WORDS = [...CORE_WORDS, ...ADVANCED_WORDS] as const;
 
 type Word = (typeof WORDS)[number];
-type Mode = "shelf" | "flashcards" | "quiz" | "tenses";
+type Mode = "shelf" | "flashcards" | "quiz" | "tenses" | "shadowing";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary", "Advanced"];
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -99,6 +101,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
     { id: "flashcards" as Mode, label: "Flashcards", icon: Layers3 },
     { id: "quiz" as Mode, label: "Quick quiz", icon: Target },
     { id: "tenses" as Mode, label: "Tenses", icon: Sparkles },
+    { id: "shadowing" as Mode, label: "Shadowing", icon: Mic },
   ];
   return <aside className="rail">
     <div className="rail-top"><Logo /><button className="icon-btn mobile-menu" aria-label="Open menu"><Menu size={20} /></button></div>
@@ -113,7 +116,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
 }
 
 function Header({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
-  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : "Make your sentences clearer."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : "A friendly guide to the 12 ways English places an action in time."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
+  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : mode === "tenses" ? "Make your sentences clearer." : "Speak with the rhythm."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : mode === "tenses" ? "A friendly guide to the 12 ways English places an action in time." : "Listen, speak along, and build a more natural American English rhythm."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
 }
 
 function Shelf({ words, category, setCategory, query, setQuery, setMode, learned, markLearned }: { words: readonly Word[]; category: string; setCategory: (v: string) => void; query: string; setQuery: (v: string) => void; setMode: (m: Mode) => void; learned: number; markLearned: (w: string) => void }) {
@@ -138,6 +141,30 @@ function Quiz({ words, onFinish, markLearned }: { words: readonly Word[]; onFini
   return <div className="mode-view quiz-view"><div className="mode-title"><div><span className="note-label">QUICK QUIZ · 5 QUESTIONS</span><h2>Make the word stick.</h2><p>Choose the definition that feels most precise.</p></div><div className="quiz-score"><Trophy size={17} /> {score} correct</div></div><div className="quiz-progress"><span style={{ width: `${((index) / quizWords.length) * 100}%` }} /></div><div className="quiz-question"><div className="question-top"><span>QUESTION {index + 1} OF {quizWords.length}</span><Difficulty level={current.dif} /></div><h3>What does <em>{current.w}</em> mean?</h3><div className="quiz-options">{options.map((option, i) => { const right = option === current.m; const state = selected ? right ? "right" : selected === option ? "wrong" : "muted" : ""; return <button key={option} className={`quiz-option ${state}`} onClick={() => choose(option)}><span>{String.fromCharCode(65 + i)}</span><p>{option}</p>{selected && right && <Check size={17} />}{selected === option && !right && <X size={17} />}</button>; })}</div></div><div className="quiz-foot"><CircleHelp size={16} /><span>Take your best guess. You can review every word on the shelf afterwards.</span></div></div>;
 }
 
+function ShadowingView() {
+  const [index, setIndex] = useState(0);
+  const [completed, setCompleted] = useState<number[]>(() => JSON.parse(localStorage.getItem("shadowing-completed") || "[]"));
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const line = SHADOWING_LINES[index];
+  useEffect(() => {
+    if (countdown === null) return;
+    if (countdown === 0) { setCountdown(null); return; }
+    const timer = window.setTimeout(() => setCountdown(value => value === null ? null : value - 1), 800);
+    return () => window.clearTimeout(timer);
+  }, [countdown]);
+  const markComplete = () => {
+    setCompleted(previous => {
+      const next = previous.includes(line.id) ? previous : [...previous, line.id];
+      localStorage.setItem("shadowing-completed", JSON.stringify(next));
+      return next;
+    });
+    setCountdown(null);
+  };
+  const nextLine = () => { markComplete(); setIndex(value => (value + 1) % SHADOWING_LINES.length); };
+  const previousLine = () => { setCountdown(null); setIndex(value => (value - 1 + SHADOWING_LINES.length) % SHADOWING_LINES.length); };
+  return <div className="shadowing-view"><section className="shadowing-intro"><div><span className="note-label">SPEAKING LAB · 30 LINES</span><h2>Borrow the rhythm.<br /><em>Find your voice.</em></h2><p>Listen to the US-English model, speak at the same time, then say the line once more on your own. Focus on rhythm before speed.</p></div><div className="accent-badge"><Mic size={22} /><strong>US English</strong><span>Natural pace · clear stress</span></div></section><div className="shadowing-progress"><div><span>YOUR PRACTICE</span><strong>{completed.length} / {SHADOWING_LINES.length} lines completed</strong></div><div className="progress-track"><span style={{ width: `${(completed.length / SHADOWING_LINES.length) * 100}%` }} /></div></div><div className="shadowing-card"><div className="shadowing-meta"><span className="family-tag">LINE {String(line.id).padStart(2, "0")}</span><span>{line.level} · Focus: {line.focus}</span></div><p className="shadowing-line">“{line.text}”</p><div className="shadowing-actions"><SpeakButton text={line.text} label="Listen US" /><button className="shadowing-start" onClick={() => setCountdown(3)} disabled={countdown !== null}>{countdown === null ? "Start shadowing" : countdown === 0 ? "Speak now" : `Get ready · ${countdown}`}</button><button className={`shadowing-done ${completed.includes(line.id) ? "done" : ""}`} onClick={markComplete}>{completed.includes(line.id) ? <><Check size={15} /> Completed</> : "Mark complete"}</button></div><div className="shadowing-tip"><Lightbulb size={18} /><span><strong>Technique:</strong> {line.focus}. Keep the sentence meaning in mind, copy the pauses, and let unstressed words become lighter.</span></div></div><div className="shadowing-nav"><button onClick={previousLine}><ChevronLeft size={16} /> Previous line</button><div className="shadowing-dots">{[0,1,2,3,4].map(dot => <i key={dot} className={Math.floor(index / 6) === dot ? "active" : ""} />)}</div><button onClick={nextLine}>Next line <ChevronRight size={16} /></button></div></div>;
+}
+
 function TensesView() {
   const [family, setFamily] = useState<"All" | TenseLesson["family"]>("All");
   const [selected, setSelected] = useState(TENSES[0].id);
@@ -157,5 +184,5 @@ export default function Home() {
   const filtered = useMemo(() => WORDS.filter(w => (category === "All words" || w.cat === category) && (`${w.w} ${w.m} ${w.cat}`.toLowerCase().includes(query.toLowerCase()))), [category, query]);
   const markLearned = (w: string) => setLearnedWords(prev => { const next = prev.includes(w) ? prev : [...prev, w]; localStorage.setItem("vocab-learned", JSON.stringify(next)); return next; });
   const finishQuiz = (score: number) => { toast.success(`Quiz complete — ${score}/5 correct`, { description: score >= 4 ? "Your word sense is getting sharp." : "Good practice. The shelf is here when you want a review." }); setMode("shelf"); };
-  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenses" && <TensesView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
+  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenses" && <TensesView />}{mode === "shadowing" && <ShadowingView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
 }
