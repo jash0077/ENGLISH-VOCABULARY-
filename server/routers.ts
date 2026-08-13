@@ -10,6 +10,7 @@ const sentenceInput = z.object({
   meaning: z.string().trim().min(1).max(300),
   partOfSpeech: z.string().trim().min(1).max(40),
   category: z.enum(["Everyday", "Academic", "Business"]),
+  difficulty: z.enum(["Beginner", "Intermediate", "Advanced"]),
 });
 
 export const appRouter = router({
@@ -36,7 +37,7 @@ export const appRouter = router({
           },
           {
             role: "user",
-            content: `Create one short example sentence for the vocabulary word \"${input.word}\". Meaning: ${input.meaning}. Part of speech: ${input.partOfSpeech}. Learning category: ${input.category}. The sentence must use the word naturally, be 8–20 words, and make the meaning clear. Also provide a brief learner tip.`,
+            content: `Create one short example sentence for the vocabulary word \"${input.word}\". Meaning: ${input.meaning}. Part of speech: ${input.partOfSpeech}. Learning category: ${input.category}. Difficulty: ${input.difficulty}. For Beginner, use simple grammar and familiar context; for Intermediate, use a natural multi-clause context; for Advanced, use nuanced precise context while keeping the meaning clear. The sentence must use the word naturally, be 8–20 words, and make the meaning clear. Also provide a brief learner tip suited to this difficulty.`,
           },
         ],
         response_format: {

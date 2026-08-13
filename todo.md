@@ -49,3 +49,11 @@
 - [x] Add generate, loading, retry, fallback, and audio controls to word details.
 - [x] Validate error handling, responsive layout, and production build.
 - [x] Save and publish the AI sentence feature.
+
+## AI sentence difficulty selector
+
+- [x] Add Beginner, Intermediate, and Advanced difficulty input validation to the sentence procedure.
+- [x] Add a persisted difficulty dropdown to the AI sentence panel.
+- [x] Include the selected difficulty in the generation prompt and generated result state.
+- [x] Validate loading, retry, fallback, audio, and production build behavior.
+- [x] Save and publish the difficulty-selector update.
