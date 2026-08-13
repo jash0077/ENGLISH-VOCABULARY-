@@ -74,3 +74,9 @@
 .tense-sentence-list b { color: var(--citron); }
 .tense-sentence-list .speak-button { padding: .3rem .45rem; font-size: .58rem; }
 @media (max-width: 560px) { .audio-example-row { align-items: flex-start; flex-direction: column; gap: .45rem; } }
+
+/* Editorial Study Hall — vocabulary audio: meanings and examples sit as small spoken annotations beneath each dictionary entry. */
+.word-audio { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: .65rem; }
+.word-audio .speak-button { border-color: rgba(35,57,78,.2); background: #f4eedf; color: var(--ink); padding: .35rem .5rem; font-size: .58rem; }
+.word-audio .speak-button:hover, .word-audio .speak-button.speaking { border-color: var(--coral); background: var(--coral); color: #fffaf0; }
+.word-example { max-width: 560px; color: var(--muted); font: .74rem/1.45 var(--sans); font-style: italic; }
