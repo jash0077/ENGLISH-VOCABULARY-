@@ -66,3 +66,12 @@
 - [x] Add generated-result cards with pronunciation, copy, regenerate, and challenge controls.
 - [x] Validate advanced controls, fallback behavior, audio, and production build.
 - [x] Save and publish the advanced sentence-practice update.
+
+## US Phonetics practice
+
+- [x] Add a curated US-English IPA sound library with vowel and consonant groups.
+- [x] Add example words, mouth/placement guidance, and common sound notes for each phoneme.
+- [x] Add a dedicated US Phonetics navigation entry and responsive practice cards.
+- [x] Add US-English audio playback, repeat controls, and practiced-state persistence.
+- [x] Validate phonetics navigation, audio controls, mobile layout, and production build.
+- [x] Save and publish the US Phonetics section.
