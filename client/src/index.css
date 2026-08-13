@@ -197,3 +197,46 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 .phonetic-card .speak-button { display:inline-flex; align-items:center; gap:.4rem; min-height:2.15rem; padding:.5rem .7rem; border:1px solid var(--navy); background:var(--navy); color:#fffaf0; font:700 .65rem/1 var(--sans); letter-spacing:.04em; text-transform:none; cursor:pointer; }
 .phonetic-card .speak-button:hover, .phonetic-card .speak-button.speaking { background:var(--coral); border-color:var(--coral); color:#fffaf0; }
 .phonetic-card .speak-button:focus-visible { outline:3px solid rgba(218,102,78,.35); outline-offset:2px; }
+
+/* Mobile comfort and smoothness pass */
+html { overflow-x:hidden; -webkit-text-size-adjust:100%; }
+body { overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+button, a, input, select { -webkit-tap-highlight-color:transparent; }
+@media (max-width:700px) {
+  .main-canvas { width:100%; min-width:0; padding:1.15rem .95rem 2rem; }
+  .page-header { gap:.7rem; margin-bottom:1.2rem; }
+  .page-header h1 { font-size:clamp(2.35rem,11vw,3.4rem); line-height:.96; }
+  .page-header p { max-width:34rem; font-size:.88rem; line-height:1.5; }
+  .rail { min-height:auto; }
+  .rail-top { padding:.8rem .95rem .55rem; }
+  .rail-nav { display:flex; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; gap:.28rem; padding:.2rem .35rem .45rem; }
+  .rail-nav::-webkit-scrollbar { display:none; }
+  .rail-nav button { flex:0 0 auto; min-height:2.5rem; padding:.6rem .72rem; white-space:nowrap; }
+  .rail-nav button span { font-size:.67rem; }
+  .dashboard-hero { padding:1.25rem 1.05rem; gap:1.1rem; border-left-width:4px; }
+  .dashboard-hero h2 { font-size:clamp(3rem,15vw,4.8rem); line-height:.9; }
+  .dashboard-hero p { font-size:.88rem; line-height:1.48; }
+  .dashboard-total { min-width:0; width:100%; }
+  .dashboard-stats { gap:.5rem; }
+  .dashboard-stats > div { padding:.85rem .75rem; }
+  .dashboard-stats strong { font-size:1.8rem; }
+  .dashboard-panel, .dashboard-favorites, .offline-packs, .phonetics-toolbar { padding-left:.85rem; padding-right:.85rem; }
+  .dashboard-panel h3, .phonetics-toolbar h2 { font-size:1.45rem; }
+  .daily-grid { gap:.5rem; }
+  .daily-grid button { min-height:5.4rem; padding:.8rem; }
+  .category-filter-row, .phonetics-filters { scrollbar-width:none; overscroll-behavior-x:contain; }
+  .category-filter-row::-webkit-scrollbar, .phonetics-filters::-webkit-scrollbar { display:none; }
+  .shelf-view, .dashboard-view, .phonetics-view, .mode-view { min-width:0; }
+  .word-grid, .phonetics-list { content-visibility:auto; contain-intrinsic-size:600px; }
+  .phonetic-card { padding:1rem; }
+  .phonetic-card h3 { font-size:1.65rem; }
+  .phonetic-hero-symbol { font-size:clamp(4rem,20vw,6rem); }
+  .phonetic-examples > div { align-items:flex-start; padding:.7rem; }
+  .phonetic-examples strong { font-size:1.08rem; }
+  .phonetic-examples .speak-button { min-height:2.5rem; padding:.55rem .65rem; }
+  .soft-btn, .coral-btn, .speak-button, .filter-difficulty, .difficulty-filters button { min-height:2.6rem; }
+  .data-loading { min-height:12rem; padding:1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}

@@ -89,24 +89,28 @@ const TODAY = new Date().toISOString().slice(0, 10);
 
 function SpeakButton({ text, label = "Listen" }: { text: string; label?: string }) {
   const [speaking, setSpeaking] = useState(false);
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  const speechBusy = useRef(false);
+  useEffect(() => () => { speechBusy.current = false; window.speechSynthesis?.cancel(); }, []);
   const toggleSpeech = () => {
     if (!("speechSynthesis" in window)) {
       toast.error("Audio playback is not supported in this browser.");
       return;
     }
-    if (speaking) {
+    if (speaking || speechBusy.current) {
       window.speechSynthesis.cancel();
+      speechBusy.current = false;
       setSpeaking(false);
       return;
     }
     window.speechSynthesis.cancel();
+    speechBusy.current = true;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-US";
     utterance.rate = 0.86;
     utterance.pitch = 1;
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
+    const finishSpeech = () => { speechBusy.current = false; setSpeaking(false); };
+    utterance.onend = finishSpeech;
+    utterance.onerror = finishSpeech;
     setSpeaking(true);
     window.speechSynthesis.speak(utterance);
   };

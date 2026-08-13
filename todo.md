@@ -153,4 +153,12 @@
 - [x] Add individual US-English playback controls for example words and repeat practice.
 - [x] Add active speaking state, stop behavior, and unsupported-browser feedback.
 - [x] Validate phonetics audio controls, responsive layout, and GitHub Pages deployment.
-- [ ] Save and publish the phonetics sound update.
+- [x] Save and publish the phonetics sound update.
+
+## Mobile clean UI and smooth performance
+
+- [x] Audit mobile layout overflow, tap targets, navigation, and loading behavior.
+- [x] Improve phone spacing, typography, cards, filters, and fixed navigation behavior.
+- [x] Reduce perceived hangs with progressive loading, guarded speech actions, and responsive feedback.
+- [x] Validate core phone flows, TypeScript, tests, production build, and screenshots.
+- [x] Save and publish the mobile optimization update.
