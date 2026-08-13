@@ -1,7 +1,6 @@
-# Tenses section checklist
+# Audio pronunciation checklist
 
-- [ ] Prepare original explanations for all 12 English tenses.
-- [ ] Add structures, use cases, examples, and sentence patterns.
-- [ ] Add the Tenses section to the study navigation.
-- [ ] Add interactive tense cards and a quick practice check.
-- [ ] Build, deploy, and verify the GitHub Pages site.
+- [ ] Add a reusable browser speech-synthesis pronunciation button.
+- [ ] Add playback controls to affirmative, negative, and question examples for all 12 tenses.
+- [ ] Add accessible labels, stop behavior, and reduced-motion-safe visual feedback.
+- [ ] Run checks, save a checkpoint, and publish to GitHub Pages.

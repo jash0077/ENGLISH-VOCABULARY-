@@ -1,5 +1,5 @@
 /* Editorial Study Hall: warm paper, ink navy, pencil coral. Main study workspace with visible, tactile learning states. */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -16,6 +16,8 @@ import {
   Sparkles,
   Target,
   Trophy,
+  Volume2,
+  Square,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -56,6 +58,32 @@ type Mode = "shelf" | "flashcards" | "quiz" | "tenses";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary", "Advanced"];
 const ASSET_BASE = import.meta.env.BASE_URL;
+
+function SpeakButton({ text }: { text: string }) {
+  const [speaking, setSpeaking] = useState(false);
+  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  const toggleSpeech = () => {
+    if (!("speechSynthesis" in window)) {
+      toast.error("Audio playback is not supported in this browser.");
+      return;
+    }
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 0.86;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+  return <button className={`speak-button ${speaking ? "speaking" : ""}`} onClick={toggleSpeech} aria-label={`${speaking ? "Stop" : "Play"} pronunciation: ${text}`} aria-pressed={speaking}>{speaking ? <Square size={13} fill="currentColor" /> : <Volume2 size={16} />}<span>{speaking ? "Stop" : "Listen"}</span></button>;
+}
 
 function Logo() {
   return <div className="brand-mark" aria-label="Vocab Studio logo"><img src={`${ASSET_BASE}assets/vocab-mark.png`} alt="" /><span>vocab<br /><em>studio</em></span></div>;
@@ -120,7 +148,7 @@ function TensesView() {
   return <div className="tenses-view">
     <section className="tense-intro"><div><span className="note-label">GRAMMAR DESK · 12 TENSES</span><h2>Put every action<br /><em>in its place.</em></h2><p>English tenses are just a timeline. Start with when the action happens, then notice whether it is a habit, in progress, or complete.</p></div><div className="timeline-art"><span>PAST</span><i /><span>NOW</span><i /><span>NEXT</span></div></section>
     <div className="tense-toolbar"><div><span className="note-label">THE TENSE MAP</span><h2>Choose a tense</h2></div><div className="tense-filters">{["All", "Present", "Past", "Future"].map(item => <button key={item} className={family === item ? "selected" : ""} onClick={() => setFamily(item as typeof family)}>{item}</button>)}</div></div>
-    <div className="tense-layout"><div className="tense-list">{visible.map((tense, index) => <button key={tense.id} className={`tense-list-item ${selected === tense.id ? "active" : ""}`} onClick={() => { setSelected(tense.id); setPractice(null); }}><span>{String(TENSES.indexOf(tense) + 1).padStart(2, "0")}</span><div><strong>{tense.name}</strong><small>{tense.family} · {tense.short}</small></div><ChevronRight size={16} /></button>)}</div><article className="tense-card"><div className="tense-card-top"><span className={`family-tag ${current.family.toLowerCase()}`}>{current.family}</span><span className="tense-number">LESSON {String(TENSES.indexOf(current) + 1).padStart(2, "0")} / 12</span></div><h3>{current.name}</h3><p className="tense-short">{current.short}</p><div className="tense-block"><span>WHEN TO USE IT</span><p>{current.use}</p></div><div className="tense-block structure-block"><span>THE SHAPE</span><strong>{current.structure}</strong></div><div className="tense-example"><span>EXAMPLE</span><p>“{current.example}”</p><div><b>Negative:</b> {current.negative}<br /><b>Question:</b> {current.question}</div></div><div className="tense-clues"><span>CLUE WORDS</span>{current.clues.map(clue => <b key={clue}>{clue}</b>)}</div><div className="tense-tip"><Lightbulb size={17} /><p><strong>Easy way to remember:</strong> {current.tip}</p></div><div className="tense-practice"><span>QUICK CHECK</span><p>Which sentence shows <strong>{current.name}</strong>?</p>{answers.map(answer => <button key={answer} className={practice === answer ? answer === current.example ? "correct" : "incorrect" : ""} onClick={() => setPractice(answer)}>{answer}</button>)}</div></article></div>
+    <div className="tense-layout"><div className="tense-list">{visible.map((tense, index) => <button key={tense.id} className={`tense-list-item ${selected === tense.id ? "active" : ""}`} onClick={() => { setSelected(tense.id); setPractice(null); }}><span>{String(TENSES.indexOf(tense) + 1).padStart(2, "0")}</span><div><strong>{tense.name}</strong><small>{tense.family} · {tense.short}</small></div><ChevronRight size={16} /></button>)}</div><article className="tense-card"><div className="tense-card-top"><span className={`family-tag ${current.family.toLowerCase()}`}>{current.family}</span><span className="tense-number">LESSON {String(TENSES.indexOf(current) + 1).padStart(2, "0")} / 12</span></div><h3>{current.name}</h3><p className="tense-short">{current.short}</p><div className="tense-block"><span>WHEN TO USE IT</span><p>{current.use}</p></div><div className="tense-block structure-block"><span>THE SHAPE</span><strong>{current.structure}</strong></div><div className="tense-example"><span>EXAMPLE</span><div className="audio-example-row"><p>“{current.example}”</p><SpeakButton text={current.example} /></div><div className="tense-sentence-list"><div><b>Negative:</b> {current.negative}<SpeakButton text={current.negative} /></div><div><b>Question:</b> {current.question}<SpeakButton text={current.question} /></div></div></div><div className="tense-clues"><span>CLUE WORDS</span>{current.clues.map(clue => <b key={clue}>{clue}</b>)}</div><div className="tense-tip"><Lightbulb size={17} /><p><strong>Easy way to remember:</strong> {current.tip}</p></div><div className="tense-practice"><span>QUICK CHECK</span><p>Which sentence shows <strong>{current.name}</strong>?</p>{answers.map(answer => <button key={answer} className={practice === answer ? answer === current.example ? "correct" : "incorrect" : ""} onClick={() => setPractice(answer)}>{answer}</button>)}</div></article></div>
   </div>;
 }
 

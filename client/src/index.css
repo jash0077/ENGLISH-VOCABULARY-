@@ -63,3 +63,14 @@
 .tense-practice button { display: block; width: 100%; margin-top: .4rem; border: 1px solid var(--line); background: #fffaf0; padding: .65rem .75rem; text-align: left; color: var(--ink); font: .78rem/1.35 var(--sans); transition: border-color .16s var(--ease-out), background .16s var(--ease-out); }
 .tense-practice button:hover { border-color: var(--coral); }.tense-practice button.correct { border-color: #5d8c6b; background: #e6f2e7; }.tense-practice button.incorrect { border-color: #cf6a5a; background: #f9e1da; }
 @media (max-width: 800px) { .tense-intro, .tense-layout { grid-template-columns: 1fr; } .timeline-art { justify-content: flex-start; padding-top: 1rem; } .tense-toolbar { align-items: flex-start; flex-direction: column; } }
+
+/* Editorial Study Hall — pronunciation controls: compact coral listening marks keep audio close to the sentence it supports. */
+.audio-example-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.audio-example-row p { margin: .65rem 0; }
+.speak-button { display: inline-flex; align-items: center; gap: .35rem; flex: 0 0 auto; border: 1px solid rgba(255,250,240,.28); background: rgba(255,250,240,.08); color: #fffaf0; padding: .45rem .6rem; font: 700 .62rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; transition: background .16s var(--ease-out), color .16s var(--ease-out), transform .16s var(--ease-out); }
+.speak-button:hover, .speak-button.speaking { background: var(--coral); color: #fffaf0; transform: translateY(-1px); }
+.tense-sentence-list { display: grid; gap: .4rem; color: rgba(255,250,240,.72); font: .78rem/1.7 var(--sans); }
+.tense-sentence-list > div { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.tense-sentence-list b { color: var(--citron); }
+.tense-sentence-list .speak-button { padding: .3rem .45rem; font-size: .58rem; }
+@media (max-width: 560px) { .audio-example-row { align-items: flex-start; flex-direction: column; gap: .45rem; } }
