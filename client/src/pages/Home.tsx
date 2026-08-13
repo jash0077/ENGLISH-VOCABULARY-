@@ -1,5 +1,5 @@
 /* Editorial Study Hall: warm paper, ink navy, pencil coral. Main study workspace with visible, tactile learning states. */
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -63,10 +63,11 @@ const DAILY_SHADOWING_PASSAGES = SHADOWING_EXPANSION.map(item => ({ id: `daily-$
 const PRACTICE_PASSAGES = [...SHADOWING_PASSAGES, ...DAILY_SHADOWING_PASSAGES] as const;
 type TenseQuizQuestion = { id: string; prompt: string; options: string[]; correct_index: number; explanation: string };
 type TenseQuizSet = { tense: string; rounds: { round: number; questions: TenseQuizQuestion[] }[] };
+type MissedQuestion = { tense: string; round: number; question: TenseQuizQuestion; selectedIndex: number };
 const TENSE_BANK = TENSE_QUIZ_BANK as unknown as TenseQuizSet[];
 
 type Word = { w: string; p: string; ph: string; m: string; ex: string; syn: readonly string[]; cat: string; dif: number };
-type Mode = "shelf" | "flashcards" | "quiz" | "tenses" | "shadowing" | "tenseQuiz";
+type Mode = "shelf" | "flashcards" | "quiz" | "tenses" | "shadowing" | "tenseQuiz" | "review";
 
 const CATEGORIES = ["All words", "Everyday", "Academic", "Business", "Literary", "Advanced"];
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -105,12 +106,13 @@ function Difficulty({ level }: { level: number }) {
   return <span className="difficulty" aria-label={`${level} of 3 difficulty`}><i className={level >= 1 ? "on" : ""} /><i className={level >= 2 ? "on" : ""} /><i className={level >= 3 ? "on" : ""} /></span>;
 }
 
-function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode: (m: Mode) => void; learned: number; streak: number }) {
+function ProgressRail({ mode, setMode, learned, streak, missedCount }: { mode: Mode; setMode: (m: Mode) => void; learned: number; streak: number; missedCount: number }) {
   const items = [
     { id: "shelf" as Mode, label: "Word shelf", icon: BookOpen },
     { id: "flashcards" as Mode, label: "Flashcards", icon: Layers3 },
     { id: "quiz" as Mode, label: "Quick quiz", icon: Target },
     { id: "tenseQuiz" as Mode, label: "Tense quiz", icon: ClipboardCheck },
+    { id: "review" as Mode, label: "Review mistakes", icon: RotateCw },
     { id: "tenses" as Mode, label: "Tenses", icon: Sparkles },
     { id: "shadowing" as Mode, label: "Shadowing", icon: Mic },
   ];
@@ -118,7 +120,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
     <div className="rail-top"><Logo /><button className="icon-btn mobile-menu" aria-label="Open menu"><Menu size={20} /></button></div>
     <div className="rail-label">Study desk</div>
     <nav className="rail-nav" aria-label="Study modes">
-      {items.map(({ id, label, icon: Icon }) => <button key={id} onClick={() => setMode(id)} className={`rail-item ${mode === id ? "active" : ""}`}><Icon size={18} /><span>{label}</span>{id === "quiz" && <b>3</b>}</button>)}
+      {items.map(({ id, label, icon: Icon }) => <button key={id} onClick={() => setMode(id)} className={`rail-item ${mode === id ? "active" : ""}`}><Icon size={18} /><span>{label}</span>{id === "quiz" && <b>3</b>}{id === "review" && <b>{missedCount}</b>}</button>)}
     </nav>
     <div className="rail-note"><span className="note-pin" /><p>Small steps compound.<br /><strong>Keep the word close.</strong></p></div>
     <div className="rail-progress"><div className="rail-progress-head"><span>Today</span><strong>{learned}/10</strong></div><div className="progress-track"><span style={{ width: `${Math.min(learned * 10, 100)}%` }} /></div><div className="streak"><Flame size={16} /> {streak} day streak</div></div>
@@ -127,7 +129,7 @@ function ProgressRail({ mode, setMode, learned, streak }: { mode: Mode; setMode:
 }
 
 function Header({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
-  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : mode === "tenseQuiz" ? "Name the tense." : mode === "tenses" ? "Make your sentences clearer." : "Speak with the rhythm."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : mode === "tenseQuiz" ? "Choose a tense, take a round, and make the timeline automatic." : mode === "tenses" ? "A friendly guide to the 12 ways English places an action in time." : "Listen, speak along, and build a more natural American English rhythm."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
+  return <header className="page-header"><div><p className="eyebrow">Thursday · 12 min practice</p><h1>{mode === "shelf" ? "Build a better word bank." : mode === "flashcards" ? "Turn the page." : mode === "quiz" ? "Make the word stick." : mode === "tenseQuiz" ? "Name the tense." : mode === "review" ? "Turn mistakes into progress." : mode === "tenses" ? "Make your sentences clearer." : "Speak with the rhythm."}</h1><p className="lede">{mode === "shelf" ? "A curated shelf of useful, precise words for sharper thinking." : mode === "flashcards" ? "Recall first, reveal second. Your memory does the heavy lifting." : mode === "quiz" ? "A short check-in across today’s shelf — no pressure, just practice." : mode === "tenseQuiz" ? "Choose a tense, take a round, and make the timeline automatic." : mode === "review" ? "Revisit missed tense questions, understand the why, and try again." : mode === "tenses" ? "A friendly guide to the 12 ways English places an action in time." : "Listen, speak along, and build a more natural American English rhythm."}</p></div><div className="header-actions"><button className="streak-chip"><Flame size={15} /> 4 days</button><button className="avatar avatar-large">AS</button></div></header>;
 }
 
 function Shelf({ words, category, setCategory, query, setQuery, setMode, learned, markLearned }: { words: readonly Word[]; category: string; setCategory: (v: string) => void; query: string; setQuery: (v: string) => void; setMode: (m: Mode) => void; learned: number; markLearned: (w: string) => void }) {
@@ -163,12 +165,21 @@ function TenseQuizView() {
   const currentSet = TENSE_BANK[tenseIndex];
   const questions = currentSet.rounds[roundIndex].questions;
   const current = questions[questionIndex];
-  const choose = (index: number) => { if (selected !== null) return; setSelected(index); if (index === current.correct_index) setScore(value => value + 1); };
+  const choose = (index: number) => { if (selected !== null) return; setSelected(index); if (index === current.correct_index) setScore(value => value + 1); else { const key = `${currentSet.tense}:${roundIndex + 1}:${current.id}`; const existing: MissedQuestion[] = JSON.parse(localStorage.getItem("tense-missed-questions") || "[]"); const next = existing.some(item => `${item.tense}:${item.round}:${item.question.id}` === key) ? existing : [...existing, { tense: currentSet.tense, round: roundIndex + 1, question: current, selectedIndex: index }]; localStorage.setItem("tense-missed-questions", JSON.stringify(next)); } };
   const chooseTense = (index: number) => { setTenseIndex(index); setRoundIndex(0); setQuestionIndex(0); setSelected(null); setScore(0); };
   const chooseRound = (index: number) => { setRoundIndex(index); setQuestionIndex(0); setSelected(null); setScore(0); };
   const nextQuestion = () => { if (questionIndex < questions.length - 1) { setQuestionIndex(value => value + 1); setSelected(null); } else { setRoundIndex(value => (value + 1) % currentSet.rounds.length); setQuestionIndex(0); setSelected(null); setScore(0); } };
   const roundFinished = questionIndex === questions.length - 1 && selected !== null;
   return <div className="tense-quiz-view"><section className="tense-quiz-intro"><div><span className="note-label">TENSE IDENTIFICATION · 1,200 QUESTIONS</span><h2>Make the timeline<br /><em>automatic.</em></h2><p>Choose one of the 12 tenses, select a round, and identify the sentence that matches the target tense. Every answer includes a quick reason.</p></div><div className="quiz-bank-count"><strong>12</strong><span>tenses</span><strong>120</strong><span>rounds</span><strong>1,200</strong><span>questions</span></div></section><div className="tense-quiz-selectors"><div><span className="note-label">CHOOSE A TENSE</span><div className="tense-quiz-tense-grid">{TENSE_BANK.map((item, index) => <button key={item.tense} className={index === tenseIndex ? "active" : ""} onClick={() => chooseTense(index)}>{item.tense}</button>)}</div></div><div><span className="note-label">CHOOSE A ROUND</span><div className="tense-quiz-round-grid">{currentSet.rounds.map((round, index) => <button key={round.round} className={index === roundIndex ? "active" : ""} onClick={() => chooseRound(index)}>{round.round}</button>)}</div></div></div><div className="tense-quiz-card"><div className="tense-quiz-card-top"><span className="family-tag">{currentSet.tense}</span><span>ROUND {roundIndex + 1} · QUESTION {questionIndex + 1} / {questions.length}</span><strong>{score} correct</strong></div><div className="quiz-progress"><span style={{ width: `${((questionIndex + (selected !== null ? 1 : 0)) / questions.length) * 100}%` }} /></div><h3>{current.prompt}</h3><div className="tense-quiz-options">{current.options.map((option, index) => { const state = selected === null ? "" : index === current.correct_index ? "correct" : index === selected ? "incorrect" : "muted"; return <button key={option} className={state} onClick={() => choose(index)}><span>{String.fromCharCode(65 + index)}</span><p>{option}</p>{selected !== null && index === current.correct_index && <Check size={17} />}</button>; })}</div>{selected !== null && <div className={`tense-quiz-feedback ${selected === current.correct_index ? "correct" : "incorrect"}`}><strong>{selected === current.correct_index ? "Correct." : "Not quite."}</strong><p>{current.explanation}</p></div>}<div className="tense-quiz-footer"><span>Question bank progress: {tenseIndex * 100 + roundIndex * 10 + questionIndex + 1} / 1,200</span>{selected !== null && <button className="coral-btn" onClick={nextQuestion}>{roundFinished ? (roundIndex === 9 ? "Restart tense" : `Next round · ${roundIndex + 2}`) : "Next question"} <ArrowRight size={16} /></button>}</div></div></div>;
+}
+
+function ReviewMistakes({ missed, setMissed }: { missed: MissedQuestion[]; setMissed: Dispatch<SetStateAction<MissedQuestion[]>> }) {
+  const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const current = missed[index];
+  const choose = (answer: number) => { if (selected !== null || !current) return; setSelected(answer); if (answer === current.question.correct_index) { const next = missed.filter((_, itemIndex) => itemIndex !== index); setMissed(next); localStorage.setItem("tense-missed-questions", JSON.stringify(next)); toast.success("Correct — removed from your review list."); if (index >= next.length) setIndex(Math.max(0, next.length - 1)); } };
+  if (!current) return <div className="review-empty"><span className="note-label">REVIEW DESK</span><h2>Your mistake shelf is clear.</h2><p>Missed tense questions will appear here automatically after you answer them incorrectly.</p><button className="coral-btn" onClick={() => toast.info("Choose Tense quiz from the study rail to practice more questions.")}>Practice a tense quiz <ArrowRight size={16} /></button></div>;
+  return <div className="review-view"><section className="review-intro"><div><span className="note-label">REVIEW DESK · {missed.length} SAVED</span><h2>Missed it?<br /><em>Meet it again.</em></h2><p>Practice one missed question at a time. Read the explanation, then keep going until the shelf is clear.</p></div><div className="review-count"><strong>{index + 1}</strong><span>of {missed.length}</span></div></section><div className="review-card"><div className="tense-quiz-card-top"><span className="family-tag">{current.tense}</span><span>ROUND {current.round} · MISSED QUESTION</span></div><h3>{current.question.prompt}</h3><div className="tense-quiz-options">{current.question.options.map((option, optionIndex) => { const state = selected === null ? "" : optionIndex === current.question.correct_index ? "correct" : optionIndex === selected ? "incorrect" : "muted"; return <button key={option} className={state} onClick={() => choose(optionIndex)}><span>{String.fromCharCode(65 + optionIndex)}</span><p>{option}</p>{selected !== null && optionIndex === current.question.correct_index && <Check size={17} />}</button>; })}</div>{selected !== null && <div className={`tense-quiz-feedback ${selected === current.question.correct_index ? "correct" : "incorrect"}`}><strong>{selected === current.question.correct_index ? "Correct — nice recovery." : "Keep this one on the shelf."}</strong><p>{current.question.explanation}</p></div>}<div className="review-footer"><span>Question {index + 1} of {missed.length}</span>{selected !== null && selected !== current.question.correct_index && <button className="soft-btn" onClick={() => setSelected(null)}>Try again</button>}{selected !== null && selected === current.question.correct_index && missed.length > 0 && <button className="coral-btn" onClick={() => setSelected(null)}>Next missed question <ArrowRight size={16} /></button>}</div></div></div>;
 }
 
 function ShadowingView() {
@@ -230,9 +241,9 @@ function TensesView() {
 }
 
 export default function Home() {
-  const [mode, setMode] = useState<Mode>("shelf"); const [category, setCategory] = useState("All words"); const [query, setQuery] = useState(""); const [learnedWords, setLearnedWords] = useState<string[]>(() => JSON.parse(localStorage.getItem("vocab-learned") || "[]")); const [streak] = useState(4);
+  const [mode, setMode] = useState<Mode>("shelf"); const [category, setCategory] = useState("All words"); const [query, setQuery] = useState(""); const [learnedWords, setLearnedWords] = useState<string[]>(() => JSON.parse(localStorage.getItem("vocab-learned") || "[]")); const [missed, setMissed] = useState<MissedQuestion[]>(() => JSON.parse(localStorage.getItem("tense-missed-questions") || "[]")); const [streak] = useState(4);
   const filtered = useMemo(() => WORDS.filter(w => (category === "All words" || w.cat === category) && (`${w.w} ${w.m} ${w.cat}`.toLowerCase().includes(query.toLowerCase()))), [category, query]);
   const markLearned = (w: string) => setLearnedWords(prev => { const next = prev.includes(w) ? prev : [...prev, w]; localStorage.setItem("vocab-learned", JSON.stringify(next)); return next; });
   const finishQuiz = (score: number) => { toast.success(`Quiz complete — ${score}/5 correct`, { description: score >= 4 ? "Your word sense is getting sharp." : "Good practice. The shelf is here when you want a review." }); setMode("shelf"); };
-  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenseQuiz" && <TenseQuizView />}{mode === "tenses" && <TensesView />}{mode === "shadowing" && <ShadowingView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
+  return <div className="app-shell"><ProgressRail mode={mode} setMode={setMode} learned={learnedWords.length} streak={streak} missedCount={missed.length} /><main className="main-canvas"><Header mode={mode} setMode={setMode} />{mode === "shelf" && <Shelf words={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery} setMode={setMode} learned={learnedWords.length} markLearned={markLearned} />}{mode === "flashcards" && <Flashcards words={filtered.length ? filtered : WORDS} markLearned={markLearned} />}{mode === "quiz" && <Quiz words={filtered.length >= 5 ? filtered : WORDS} onFinish={finishQuiz} markLearned={markLearned} />}{mode === "tenseQuiz" && <TenseQuizView />}{mode === "review" && <ReviewMistakes missed={missed} setMissed={setMissed} />}{mode === "tenses" && <TensesView />}{mode === "shadowing" && <ShadowingView />}<footer className="page-footer"><span>VOCAB STUDIO · A SMALL PRACTICE FOR A BIGGER VOCABULARY</span><span>{WORDS.length} words · 5 shelves · <strong>{learnedWords.length} learned</strong></span></footer></main></div>;
 }

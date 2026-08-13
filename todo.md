@@ -1,7 +1,7 @@
-# Full tense quiz integration checklist
+# Incorrect-answer review checklist
 
-- [ ] Generate 12 tense banks with 100 questions each.
-- [ ] Validate 1,200 unique IDs, 120 rounds, four options, and one correct index per question.
-- [ ] Add tense and round selection to the website quiz experience.
-- [ ] Add explanations, scoring, and progress persistence.
-- [ ] Build, checkpoint, publish, and verify the GitHub Pages update.
+- [ ] Persist missed tense questions in localStorage.
+- [ ] Add a Review mistakes navigation item with a saved count.
+- [ ] Show missed questions, selected answers, correct answers, and explanations.
+- [ ] Add practice-again and remove-after-correct behavior.
+- [ ] Build, checkpoint, deploy, and verify the GitHub Pages update.
