@@ -119,3 +119,18 @@
 - [x] Add iOS and unsupported-browser fallback instructions.
 - [x] Validate manifest, service worker, install UI, responsive layout, and production build.
 - [x] Save and publish the mobile install option.
+
+## Offline study packs
+
+- [x] Define pack metadata, local storage keys, and download status states.
+- [x] Add download and remove controls for Everyday, Academic, Business, Literary, and US Phonetics packs.
+- [x] Add offline-pack status to the dashboard and study navigation.
+- [x] Ensure saved packs remain usable offline with clear unavailable-data states.
+- [x] Validate pack transitions, service-worker caching, responsive UI, and production build.
+- [x] Save and publish offline study-pack controls.
+
+## Offline pack verification follow-up
+
+- [x] Add an offline-pack indicator to the study rail so saved-pack status is visible outside the dashboard.
+- [x] Add study-pack actions and clear unavailable-offline messaging for packs that are not saved.
+- [x] Verify pack save/remove transitions and the Cache Storage path, then publish the final offline-pack update.
