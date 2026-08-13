@@ -104,3 +104,10 @@
 - [x] Add an explicit empty-state message for no matching words.
 - [x] Re-verify category switching on desktop and mobile with only matching words visible.
 - [x] Save and publish the final category-filter update after verification.
+
+## US Phonetics visibility follow-up
+
+- [x] Add a prominent US Phonetics card to the Learning Dashboard.
+- [x] Add a clear direct practice action and mobile-visible navigation label for US Phonetics.
+- [x] Verify the phonetics entry point and sound cards on desktop and mobile.
+- [x] Save and publish the visible phonetics update.
