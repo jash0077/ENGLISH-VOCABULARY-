@@ -41,3 +41,11 @@
 - [ ] Add dedicated Business Vocabulary entry point and focused shelf state.
 - [ ] Validate counts, search, filters, responsive layout, and study actions.
 - [ ] Save and publish the vocabulary section update.
+
+## AI example sentences
+
+- [x] Add a server-side AI sentence-generation route using the built-in LLM helper.
+- [x] Add a structured one-sentence response with word, meaning, and category context.
+- [x] Add generate, loading, retry, fallback, and audio controls to word details.
+- [x] Validate error handling, responsive layout, and production build.
+- [x] Save and publish the AI sentence feature.
