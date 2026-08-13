@@ -75,3 +75,18 @@
 - [x] Add US-English audio playback, repeat controls, and practiced-state persistence.
 - [x] Validate phonetics navigation, audio controls, mobile layout, and production build.
 - [x] Save and publish the US Phonetics section.
+
+## Minimal-pair listening quiz
+
+- [x] Add a curated minimal-pair quiz bank covering common US-English sound contrasts.
+- [x] Add a dedicated quiz navigation entry and one-question listening flow.
+- [x] Add US-English playback, two-choice answer selection, instant feedback, and explanations.
+- [x] Add score, streak, next-question, completion, and persisted progress behavior.
+- [x] Validate audio, scoring, persistence, mobile layout, and production build.
+- [x] Save and publish the minimal-pair listening quiz.
+
+## Minimal-pair verification follow-up
+
+- [x] Add an explicit full-quiz completion summary with reset behavior.
+- [x] Verify the Minimal Pairs section at a mobile viewport and confirm its listening controls remain usable.
+- [x] Save and publish the final Minimal Pairs update after the completion-state fix.
