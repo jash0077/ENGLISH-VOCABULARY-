@@ -111,3 +111,11 @@
 - [x] Add a clear direct practice action and mobile-visible navigation label for US Phonetics.
 - [x] Verify the phonetics entry point and sound cards on desktop and mobile.
 - [x] Save and publish the visible phonetics update.
+
+## Mobile install option
+
+- [x] Add browser install-prompt state and installed-state detection.
+- [x] Add an Install Vocab Studio action to the mobile-visible interface.
+- [x] Add iOS and unsupported-browser fallback instructions.
+- [x] Validate manifest, service worker, install UI, responsive layout, and production build.
+- [x] Save and publish the mobile install option.

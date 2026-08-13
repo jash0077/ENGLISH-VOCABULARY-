@@ -24,6 +24,7 @@ import {
   Search,
   Sparkles,
   Copy,
+  Download,
   Target,
   Trophy,
   Volume2,
@@ -116,6 +117,33 @@ function Logo() {
   return <div className="brand-mark" aria-label="Vocab Studio logo"><img src={`${ASSET_BASE}assets/vocab-mark.png`} alt="" /><span>vocab<br /><em>studio</em></span></div>;
 }
 
+type InstallPromptEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
+
+function InstallButton() {
+  const [promptEvent, setPromptEvent] = useState<InstallPromptEvent | null>(null);
+  const [installed, setInstalled] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
+  const isIos = typeof navigator !== "undefined" && /iPad|iPhone|iPod/i.test(navigator.userAgent);
+  useEffect(() => {
+    const standalone = window.matchMedia?.("(display-mode: standalone)").matches || Boolean((navigator as Navigator & { standalone?: boolean }).standalone);
+    setInstalled(standalone);
+    const handlePrompt = (event: Event) => { event.preventDefault(); setPromptEvent(event as InstallPromptEvent); };
+    const handleInstalled = () => { setInstalled(true); setPromptEvent(null); setShowHelp(false); toast.success("Vocab Studio is installed on your device."); };
+    window.addEventListener("beforeinstallprompt", handlePrompt);
+    window.addEventListener("appinstalled", handleInstalled);
+    return () => { window.removeEventListener("beforeinstallprompt", handlePrompt); window.removeEventListener("appinstalled", handleInstalled); };
+  }, []);
+  const install = async () => {
+    if (installed) return;
+    if (!promptEvent) { setShowHelp(true); return; }
+    await promptEvent.prompt();
+    const choice = await promptEvent.userChoice;
+    if (choice.outcome === "accepted") setInstalled(true);
+    setPromptEvent(null);
+  };
+  return <div className="install-card"><button className="install-action" onClick={install} aria-label={installed ? "Vocab Studio is installed" : "Install Vocab Studio on this device"}><Download size={15} /><span>{installed ? "App installed" : "Install app"}</span></button>{showHelp && !installed && <p className="install-help">{isIos ? <>Tap <strong>Share</strong>, then choose <strong>Add to Home Screen</strong>.</> : <>Your browser did not provide an install prompt. Try the browser menu’s <strong>Install app</strong> or <strong>Add to Home screen</strong> option.</>}</p>}</div>;
+}
+
 function Difficulty({ level }: { level: number }) {
   return <span className="difficulty" aria-label={`${level} of 3 difficulty`}><i className={level >= 1 ? "on" : ""} /><i className={level >= 2 ? "on" : ""} /><i className={level >= 3 ? "on" : ""} /></span>;
 }
@@ -142,6 +170,7 @@ function ProgressRail({ mode, setMode, learned, streak, missedCount, daily, offl
     <nav className="rail-nav" aria-label="Study modes">
       {items.map(({ id, label, icon: Icon }) => <button key={id} onClick={() => setMode(id)} className={`rail-item ${mode === id ? "active" : ""}`}><Icon size={18} /><span>{label}</span>{id === "quiz" && <b>3</b>}{id === "review" && <b>{missedCount}</b>}</button>)}
     </nav>
+    <InstallButton />
     <div className="rail-note"><span className="note-pin" /><p>Small steps compound.<br /><strong>Keep the word close.</strong></p></div>
     <div className="rail-progress"><div className="rail-progress-head"><span>Today</span><strong>{daily.vocabulary + daily.tense + daily.shadowing}/18</strong></div><div className="progress-track"><span style={{ width: `${Math.min(((daily.vocabulary + daily.tense + daily.shadowing) / 18) * 100, 100)}%` }} /></div><div className="streak"><Flame size={16} /> {streak} day streak</div><div className="offline-note">{offline ? <><WifiOff size={13} /> Offline ready</> : <><Wifi size={13} /> Online</>}</div></div>
     <div className="rail-footer"><span className="avatar">AS</span><div><strong>Alex's desk</strong><small>Learning in public</small></div><button className="more-btn" aria-label="More options">•••</button></div>
