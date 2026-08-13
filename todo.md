@@ -90,3 +90,17 @@
 - [x] Add an explicit full-quiz completion summary with reset behavior.
 - [x] Verify the Minimal Pairs section at a mobile viewport and confirm its listening controls remain usable.
 - [x] Save and publish the final Minimal Pairs update after the completion-state fix.
+
+## Vocabulary category filters
+
+- [x] Add prominent Everyday, Academic, Business, and Literary filter chips to the Word Shelf.
+- [x] Show live counts and keep search and difficulty filters compatible with category selection.
+- [x] Preserve dedicated category navigation and add a clear active-filter state.
+- [x] Validate category switching, empty states, responsive layout, and production build.
+- [x] Save and publish the category-filter update.
+
+## Vocabulary filter verification follow-up
+
+- [x] Add an explicit empty-state message for no matching words.
+- [x] Re-verify category switching on desktop and mobile with only matching words visible.
+- [x] Save and publish the final category-filter update after verification.
