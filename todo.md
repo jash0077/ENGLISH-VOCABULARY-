@@ -184,3 +184,10 @@
 - [x] Implement viewport-based rendering with measured variable-height rows, overscan, and preserved word actions and filters.
 - [x] Validate long-list virtualization, filtering, mobile and desktop layouts, TypeScript, tests, and production build.
 - [x] Save and publish the virtual-scrolling update.
+
+## Word Shelf loading skeleton
+
+- [x] Inspect the current word-list hydration and loading state.
+- [x] Add a lightweight animated skeleton for the initial Word Shelf fetch.
+- [x] Validate the transition, mobile layout, TypeScript, tests, and production build.
+- [x] Save and publish the Word Shelf loading update.
