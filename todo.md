@@ -191,3 +191,10 @@
 - [x] Add a lightweight animated skeleton for the initial Word Shelf fetch.
 - [x] Validate the transition, mobile layout, TypeScript, tests, and production build.
 - [x] Save and publish the Word Shelf loading update.
+
+## Word Shelf Back to top
+
+- [x] Inspect the virtualized list scroll container and existing control patterns.
+- [x] Add an accessible floating Back to top control with smooth scroll behavior.
+- [x] Validate mobile scrolling, desktop layout, accessibility, TypeScript, tests, and production build.
+- [x] Save and publish the Back to top update.
