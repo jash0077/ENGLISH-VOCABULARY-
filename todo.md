@@ -162,3 +162,11 @@
 - [x] Reduce perceived hangs with progressive loading, guarded speech actions, and responsive feedback.
 - [x] Validate core phone flows, TypeScript, tests, production build, and screenshots.
 - [x] Save and publish the mobile optimization update.
+
+## Mobile-first redesign and fast runtime
+
+- [x] Audit current mobile composition, interaction density, bundle loading, and render hotspots.
+- [x] Introduce a clearer mobile-first visual hierarchy and adjustable responsive layout.
+- [x] Reduce first-load work and prevent repeated expensive renders or interaction stalls.
+- [x] Test mobile first, then desktop, core study flows, TypeScript, tests, and production build.
+- [x] Save and publish the redesigned fast experience.
