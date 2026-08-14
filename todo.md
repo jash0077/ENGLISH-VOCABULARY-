@@ -177,3 +177,10 @@
 - [x] Fix the confirmed blocking work, repeated renders, or slow interaction path.
 - [x] Validate real phone responsiveness, core study flows, TypeScript, tests, and production build.
 - [x] Save and publish the evidence-based performance fix.
+
+## Word Shelf virtual scrolling
+
+- [x] Inspect the current row layout and choose stable virtual-list measurements.
+- [x] Implement viewport-based rendering with measured variable-height rows, overscan, and preserved word actions and filters.
+- [x] Validate long-list virtualization, filtering, mobile and desktop layouts, TypeScript, tests, and production build.
+- [x] Save and publish the virtual-scrolling update.

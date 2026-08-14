@@ -269,3 +269,7 @@ button, a, input, select { -webkit-tap-highlight-color:transparent; }
 }
 .word-load-more { display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%; margin:1rem 0 1.4rem; padding:.8rem 1rem; border:1px solid rgba(23,50,77,.16); background:#fffdf7; color:var(--ink); font-weight:700; }
 .word-load-more span { color:var(--muted); font-size:.68rem; font-weight:500; }
+.word-list-virtual { display:block; max-height:min(70vh, 720px); overflow-y:auto; overscroll-behavior:contain; contain:strict; scrollbar-gutter:stable; padding:0 .2rem .5rem 0; }
+.word-list-virtual .word-row { box-sizing:border-box; contain:layout paint style; }
+.virtual-list-status { margin:.65rem 0 1rem; color:var(--muted); font-size:.72rem; text-align:center; }
+@media (max-width:640px) { .word-list-virtual { max-height:68vh; } }
