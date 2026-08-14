@@ -205,3 +205,11 @@
 - [x] Add keyboard-friendly word suggestions and jump-to-word scrolling.
 - [x] Validate selection, scrolling, accessibility, mobile and desktop layout, TypeScript, tests, and production build.
 - [x] Save and publish the jump-to-word update.
+
+## Word Shelf sorting
+
+- [x] Inspect the current Shelf ordering and filter state flow.
+- [x] Add persistent Alphabetical and Recently added sorting controls.
+- [x] Preserve jump search, virtualization, filters, and mobile layout under sorting.
+- [x] Validate sorting, TypeScript, tests, production build, and responsive previews.
+- [x] Save and publish the sorting update.
