@@ -170,3 +170,10 @@
 - [x] Reduce first-load work and prevent repeated expensive renders or interaction stalls.
 - [x] Test mobile first, then desktop, core study flows, TypeScript, tests, and production build.
 - [x] Save and publish the redesigned fast experience.
+
+## Lag investigation and responsiveness fix
+
+- [x] Trace the remaining phone lag with runtime logs, bundle timing, and core-flow observation.
+- [x] Fix the confirmed blocking work, repeated renders, or slow interaction path.
+- [x] Validate real phone responsiveness, core study flows, TypeScript, tests, and production build.
+- [x] Save and publish the evidence-based performance fix.

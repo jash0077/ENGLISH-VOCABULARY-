@@ -267,3 +267,5 @@ button, a, input, select { -webkit-tap-highlight-color:transparent; }
 @media (min-width:701px) {
   .rail { position:sticky; top:0; height:100vh; align-self:flex-start; }
 }
+.word-load-more { display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%; margin:1rem 0 1.4rem; padding:.8rem 1rem; border:1px solid rgba(23,50,77,.16); background:#fffdf7; color:var(--ink); font-weight:700; }
+.word-load-more span { color:var(--muted); font-size:.68rem; font-weight:500; }
