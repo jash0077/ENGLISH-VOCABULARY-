@@ -221,3 +221,10 @@
 - [x] Reduce first-paint and repeated-render work where evidence supports it.
 - [x] Validate mobile first, then desktop, core flows, TypeScript, tests, and production build.
 - [x] Save and publish the clean fast UI update.
+
+## Word Shelf opening hang fix
+
+- [x] Trace the Word Shelf opening path, runtime logs, hydration work, sorting, and virtualization timing.
+- [x] Fix the confirmed blocking initialization or rendering path, with direct Tense Quiz loading preserved.
+- [x] Validate shelf opening, staged loading, sorting, jump search, scrolling, direct Tense Quiz loading, mobile layout, TypeScript, tests, and production build.
+- [x] Save and publish the Word Shelf hang fix.
