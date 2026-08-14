@@ -328,3 +328,23 @@ button, a, input, select { -webkit-tap-highlight-color:transparent; }
 .shelf-sort-bar select { min-height:34px; padding:.35rem 2rem .35rem .65rem; border:1px solid rgba(23,50,77,.16); border-radius:7px; background:#fffdf7; color:var(--ink); font:inherit; font-weight:700; }
 .shelf-sort-bar select:focus-visible { outline:3px solid rgba(224,104,78,.35); outline-offset:2px; }
 @media (max-width:640px) { .shelf-sort-bar { align-items:flex-start; flex-direction:column; gap:.55rem; } .shelf-sort-bar label { width:100%; justify-content:space-between; } .shelf-sort-bar select { flex:1; min-width:0; } }
+
+/* Clean-fast refinement: lower paint cost and visual noise without changing study behavior */
+.dashboard-stats, .dashboard-tools, .dashboard-favorites, .phonetics-spotlight, .offline-packs { content-visibility:auto; contain-intrinsic-size:420px; }
+.word-list-virtual { contain:strict; overscroll-behavior:contain; }
+.word-row { contain:layout paint style; }
+@media (max-width:700px) {
+  .rail { backdrop-filter:none; box-shadow:0 2px 10px rgba(23,50,77,.04); }
+  .rail-nav { scrollbar-width:none; scroll-behavior:smooth; scroll-snap-type:x proximity; }
+  .rail-nav::-webkit-scrollbar { display:none; }
+  .rail-nav button { scroll-snap-align:start; }
+  .main-canvas { padding-bottom:4rem; }
+  .hero-note, .dashboard-hero, .phonetics-spotlight { box-shadow:none; }
+  .hero-note, .dashboard-hero { border-radius:0 14px 14px 0; }
+  .section-head { gap:.85rem; }
+  .section-head h2 { font-size:clamp(1.75rem,9vw,2.35rem); }
+  .word-list-virtual { border-radius:12px; }
+  .word-row { box-shadow:none; }
+  .soft-btn, .coral-btn, .learn-btn, .speak-button { min-height:42px; }
+}
+@media (prefers-reduced-motion:reduce) { .rail-nav { scroll-behavior:auto; } }

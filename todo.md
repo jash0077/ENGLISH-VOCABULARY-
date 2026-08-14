@@ -213,3 +213,11 @@
 - [x] Preserve jump search, virtualization, filters, and mobile layout under sorting.
 - [x] Validate sorting, TypeScript, tests, production build, and responsive previews.
 - [x] Save and publish the sorting update.
+
+## Clean UI and fast feel
+
+- [x] Audit mobile and desktop visual density, layout noise, and current performance hotspots.
+- [x] Simplify hierarchy, controls, spacing, and high-frequency interactions without removing study features.
+- [x] Reduce first-paint and repeated-render work where evidence supports it.
+- [x] Validate mobile first, then desktop, core flows, TypeScript, tests, and production build.
+- [x] Save and publish the clean fast UI update.
