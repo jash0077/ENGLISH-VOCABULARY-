@@ -198,3 +198,10 @@
 - [x] Add an accessible floating Back to top control with smooth scroll behavior.
 - [x] Validate mobile scrolling, desktop layout, accessibility, TypeScript, tests, and production build.
 - [x] Save and publish the Back to top update.
+
+## Word Shelf jump-to-word search
+
+- [x] Inspect the existing search, virtualizer, and word collection flow.
+- [x] Add keyboard-friendly word suggestions and jump-to-word scrolling.
+- [x] Validate selection, scrolling, accessibility, mobile and desktop layout, TypeScript, tests, and production build.
+- [x] Save and publish the jump-to-word update.
